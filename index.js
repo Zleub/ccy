@@ -1,5 +1,3 @@
-console.log("Hello World !")
-
 const https = require('https')
 
 let options = {
@@ -36,58 +34,94 @@ const client = Binance({
 // 	})
 // })
 
-let f = a => b => client.ws.ticker(a + b, ({
-			eventType,
-		    eventTime,
-		    symbol,
-		    priceChange,
-		    priceChangePercent,
-		    weightedAvg,
-		    prevDayClose,
-		    curDayClose,
-		    closeTradeQuantity,
-		    bestBid,
-		    bestBidQnt,
-		    bestAsk,
-		    bestAskQnt,
-		    open,
-		    high,
-		    low,
-		    volume,
-		    volumeQuote,
-		    openTime,
-		    closeTime,
-		    firstTradeId,
-		    lastTradeId,
-		    totalTrades
-		}) => {
-		let date = new Date(eventTime).toDateString()
-		console.log(`[${date}] ${a} -> ${b} : ${priceChange} {${curDayClose}}`)
+let f = array => {
+	let count = 0
+	let close = client.ws.ticker(array, e => {
+		let date = new Date(e.eventTime).toDateString()
+		// console.log(`[${e.date}] ${e.symbol} : ${e.priceChange} {${e.curDayClose}}`)
+		console.log( JSON.stringify(e, false, "  ") )
+		client.prices().then(e => console.log( JSON.stringify(e['NANOETH'], false, "  ")))
+
+		count += 1
+		if (count == 20)
+			close()
 	})
+}
+
+// f(['ETHBTC'])
+
+// f('ETH')('BTC')
+
+let currs = [
+	'ETH',
+	'BTC',
+	// 'ADA',
+	// 'BNB',
+	'USDT',
+	// 'LTC',
+	// 'NEO',
+	// 'BCC'
+]
 
 client.exchangeInfo().then( e => {
-	let base_stack = []
-	let quote_stack = []
-	e.symbols.forEach( s => {
-		if (!quote_stack.find( e => e == s.quoteAsset ))
-			quote_stack.push(s.quoteAsset)
-		if (!base_stack.find( e => e == s.baseAsset ))
-			base_stack.push(s.baseAsset)
-		// console.log('----------------------')
-		// console.log(s.baseAsset, s.quoteAsset)
-		// e.symbols.forEach( _ => {
-		// 	if (s.baseAsset == _.quoteAsset && s.quoteAsset == _.baseAsset)
-		// 		console.log(`reciprok: ${s.baseAsset} - ${s.quoteAsset}`)
-			// console.log(_.quoteAsset, _.baseAsset)
-		// })
-	})
-	console.log(quote_stack)
+	let count = 0
+	let {symbols} = e
 
-	e.symbols.forEach( s => {
-		if (quote_stack.find(e => s.quoteAsset == e || s.baseAsset == e))
-			console.log(`${s.baseAsset} -> ${s.quoteAsset}`)
-	})
+	// let _f = () => client.prices().then( _ => {
+	// 	symbols.forEach( s => {
+	// 		if (currs.some( _ => _ == s.symbol)) {
+	// 			let {baseAsset, quoteAsset} = s
+	// 			console.log(`${baseAsset} ${quoteAsset} ${corrs[baseAsset + quoteAsset]}`)
+    //
+	// 			let a = symbols.find(_ => _.symbol == (corrs[baseAsset + quoteAsset] + quoteAsset) )
+	// 			let b = symbols.find(_ => _.symbol == (corrs[baseAsset + quoteAsset] + baseAsset) )
+    //
+	// 			if (a)
+	// 				console.log(`${a.symbol}`)
+	// 			if (b)
+	// 				console.log(`${b.symbol}`)
+    //
+	// 			// console.log(`1 ${s.baseAsset} <-> ${_[s.symbol]} ${s.quoteAsset}`)
+	// 			// console.log(`1 ${s.quoteAsset} <-> ${(1 / _[s.symbol]).toFixed(8)} ${s.baseAsset}`)
+	// 		}
+	// 	})
+	// 	console.log('')
+	// 	count += 1
+    //
+	// 	if (count < 4)
+	// 		_f()
+	// })
+    //
+	// _f()
 
+	let tmp = []
+	symbols.forEach(e => {
+		let {symbol, baseAsset: base, quoteAsset: quote} = e
+		if (currs.find( _ => _ == e.baseAsset ) && currs.find( _ => _ == e.quoteAsset )) {
+			client.prices().then(e => {
+				e = Object.keys(e).reduce( ((p,k) => {p[k] = Number(e[k]) ; return p}), {} )
+				currs.forEach( c => {
+					if (c != base && c != quote) {
+						console.log(`base: ${base} | quote: ${quote} | c : ${c}`)
+						let a = {
+							[base + quote] : e[base + quote],
+							[quote + base] : Number((1 / e[base + quote]).toFixed(8)),
+							[c + quote] : e[c + quote] || Number((1 / e[quote + c]).toFixed(8)),
+							[c + base] : e[c + base] || Number((1 / e[base + c]).toFixed(8)),
+							[quote + c] : e[quote + c] || Number((1 / e[c + quote]).toFixed(8)),
+							[base + c] : e[base + c] || Number((1 / e[c + quote]).toFixed(8)),
+						}
+
+						console.log(a)
+
+						// console.log(`1 ${c} => ${a[c + quote]} ${quote} => ${a[quote + base]} ${base}`)
+					}
+				})
+
+			})
+
+		}
+	})
 })
 
 // let g = a => b => client.prices().then( e => {
