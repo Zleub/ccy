@@ -117,7 +117,7 @@ let f = array => {
 			Object.keys(fs).forEach(k => {
 				if (fs[splits[k][1] + comple[k]] && fs[comple[k] + splits[k][0]]) {
 
-					// if (fs[comple[k] + splits[k][0]](fs[splits[k][1] + comple[k]](fs[k](1))) > 1) {
+					if (fs[comple[k] + splits[k][0]](fs[splits[k][1] + comple[k]](fs[k](1))) > 1.005) {
 						let [x, y, z] = [
 							Number(fs[k](1).toFixed(8)),
 							Number((fs[splits[k][1] + comple[k]]( Number(fs[k](1).toFixed(8)) ).toFixed(8))),
@@ -127,7 +127,7 @@ let f = array => {
 						console.log(`${date.toTimeString()} 1 ${splits[k][0]} -> ${x}
 	${splits[k][1]} -> ${y}
 	${comple[k]} -> ${z} ${splits[k][0]}`)
-					// }
+					}
 				}
 			})
     //
