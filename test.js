@@ -27,7 +27,7 @@ client.prices().then(e => {
     	let date = new Date(e.eventTime)
     	// console.log(new Date(), 'partialDepth', e)
       if (Number(e.asks[0].price) >= hold_ref) {
-        console.log(`selling 20 BCC for ${hold_ref} BTC`)
+        console.log(`[${new Date()}] selling 20 BCC for ${hold_ref} BTC`)
         close()
       }
     })

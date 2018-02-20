@@ -123,6 +123,9 @@ let f = array => {
 							Number((fs[splits[k][1] + comple[k]]( Number(fs[k](1).toFixed(8)) ).toFixed(8))),
 							Number((fs[comple[k] + splits[k][0]]( Number((fs[splits[k][1] + comple[k]]( Number(fs[k](1).toFixed(8)) ).toFixed(8))) ).toFixed(8)))
 						]
+						exec(`curl -X POST -H 'Content-type: application/json' --data '{"text":${date.toTimeString()} 1 ${splits[k][0]} -> ${x}
+	${splits[k][1]} -> ${y}
+	${comple[k]} -> ${z} ${splits[k][0]}}' https://hooks.slack.com/services/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`)
 
 						console.log(`${date.toTimeString()} 1 ${splits[k][0]} -> ${x}
 	${splits[k][1]} -> ${y}
