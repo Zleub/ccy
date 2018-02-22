@@ -8,5 +8,17 @@
     "apidoc": "^0.17.6",
     "bower": "^1.8.2",
     "express": "^4.16.2"
-  }
+  },
+  "description": "This is the supervisor part, which should allow you to register to a computing cluster responding to a same schema.",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://zleub@bitbucket.org/CPeyo/ccy_core-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "homepage": "https://bitbucket.org/CPeyo/ccy_core-api#readme"
 }

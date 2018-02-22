@@ -1,6 +1,8 @@
 This is the supervisor part, which should allow you to register
 to a computing cluster responding to a same schema.
 
+`npm install ; node_modules/bower/bin/bower install`
+
 - ` sh run.sh `
 
   this command loads the server and somes files, schema.json and optionally data.json.
