@@ -34,25 +34,25 @@ client.exchangeInfo().then( exchange => {
 			const args = ['watcher.js', i, j, k]
 			const child = spawn('node', args);
 
-			// child.stdout.on('data', (data) => {
-			  // console.log(`stdout: ${data}`);
-			// });
+			child.stdout.on('data', (data) => {
+			  console.log(`stdout: ${data}`);
+			});
 
-			// child.stderr.on('data', (data) => {
-			  // console.log(`stderr: ${data}`);
-			// });
+			child.stderr.on('data', (data) => {
+			  console.log(`stderr: ${data}`);
+			});
 
-			// child.on('close', (code) => {
-			//   console.log(`child process exited with code ${code}`);
-			// });
-            //
-			// child.on('exit', (code) => {
-			//   console.log(`child process exited with code ${code}`);
-			// });
-			// child.on('disconnect', (code) => {
-			//   console.log(`child process exited with code ${code}`);
-			// });
-            //
+			child.on('close', (code) => {
+			  console.log(`child process exited with code ${code}`);
+			});
+
+			child.on('exit', (code) => {
+			  console.log(`child process exited with code ${code}`);
+			});
+			child.on('disconnect', (code) => {
+			  console.log(`child process exited with code ${code}`);
+			});
+            
 			child.on('error', (err) => {
 			  console.log(`Failed to start subprocess ${args}`);
 			});
