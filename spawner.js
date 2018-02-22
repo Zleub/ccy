@@ -24,35 +24,35 @@ client.exchangeInfo().then( exchange => {
 		dict[e.baseAsset] = true
 	})
 
-	let __ = Object.keys(dict).slice(0, 32).filter(e => e != '123' && e != '456')
+	let __ = Object.keys(dict).slice(0, 8).filter(e => e != '123' && e != '456')
 	console.log(__)
 
 	__.forEach( i => {
 	__.forEach( j => {
 	__.forEach( k => {
 		if (i != j && i != k && j != k) {
-			const args = ['index.js', i, j, k]
+			const args = ['watcher.js', i, j, k]
 			const child = spawn('node', args);
 
-			child.stdout.on('data', (data) => {
-			  console.log(`stdout: ${data}`);
-			});
+			// child.stdout.on('data', (data) => {
+			  // console.log(`stdout: ${data}`);
+			// });
 
-			child.stderr.on('data', (data) => {
-			  console.log(`stderr: ${data}`);
-			});
+			// child.stderr.on('data', (data) => {
+			  // console.log(`stderr: ${data}`);
+			// });
 
-			child.on('close', (code) => {
-			  console.log(`child process exited with code ${code}`);
-			});
-
-			child.on('exit', (code) => {
-			  console.log(`child process exited with code ${code}`);
-			});
-			child.on('disconnect', (code) => {
-			  console.log(`child process exited with code ${code}`);
-			});
-
+			// child.on('close', (code) => {
+			//   console.log(`child process exited with code ${code}`);
+			// });
+            //
+			// child.on('exit', (code) => {
+			//   console.log(`child process exited with code ${code}`);
+			// });
+			// child.on('disconnect', (code) => {
+			//   console.log(`child process exited with code ${code}`);
+			// });
+            //
 			child.on('error', (err) => {
 			  console.log(`Failed to start subprocess ${args}`);
 			});

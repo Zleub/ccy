@@ -37,7 +37,7 @@ let loop = ({account, symbol, price}) => {
 	let state = 'buyin'
 	let memory = {}
 
-	let type = 'naive'
+	let type = 'gamblers'
 
 	let dump_toString = () => {
 		s = `[[${id}]] {{${type}}}` + '\n'
@@ -64,15 +64,15 @@ let loop = ({account, symbol, price}) => {
 			}
 		}, (res) => {
 			console.log(`STATUS: ${res.statusCode}`);
-			console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
+			// console.log(`HEADERS: ${JSON.stringify(res.headers)}`);
 			res.setEncoding('utf8');
 			res.on('data', (chunk) => {
-				console.log(`BODY: ${chunk}`);
+				// console.log(`BODY: ${chunk}`);
 				id = Number(chunk)
 			});
-			res.on('end', () => {
-				console.log('No more data in response.');
-			});
+			// res.on('end', () => {
+			// 	console.log('No more data in response.');
+			// });
 		})
 
 		req.on('error', (e) => {
