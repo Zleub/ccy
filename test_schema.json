@@ -1,0 +1,54 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"id": "http://api_monitor.adebray.ovh/schemas/schema.json",
+	"type": "object",
+	"properties": {
+		"register": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": { "type": "number" },
+					"symbol": {
+						"type": "object",
+						"properties": {
+							"symbol": { "type": "string" },
+							"status": { "type": "string" },
+							"baseAsset": { "type": "string" },
+							"baseAssetPrecision": { "type": "number" },
+							"quoteAsset": { "type": "string" },
+							"quotePrecision": { "type": "number" },
+							"orderTypes": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"icebergAllowed": { "type": "boolean" },
+							"filters": {
+								"type": "array"
+							}
+						}
+					},
+					"hold": { "type": "number" },
+					"ref": { "type": "number" },
+					"gold": { "type": "number" },
+					"state": { "type": "string" },
+					"init": { "type": "number" },
+					"top": { "type": "number" },
+					"bottom": { "type": "number" },
+					"balance": { "type": "string" }
+				}
+			}
+		},
+		"users": {
+			"type": "object",
+			"properties": {
+				"id_user" : { "type": "number" },
+				"login" : { "type": "string" },
+				"password" : { "type": "string" },
+				"token" : { "type": "string" }
+			}
+		}
+	}
+}

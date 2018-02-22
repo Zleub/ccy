@@ -1,0 +1,38 @@
+<dom-module id="monitor-doc">
+	<template>
+	<style>
+		:host {
+			display: block;
+		}
+	</style>
+
+	<iron-ajax
+		auto
+		url="/client/doc.md"
+		handle-as="text"
+		last-response="{{response}}">
+	</iron-ajax>
+
+	<!-- <marked-element markdown='```{{response}}```'></marked-element> -->
+
+	</template>
+	<script>
+		Polymer({
+			is: 'monitor-doc',
+			properties: {
+				response: {
+					type: String,
+					observer: 'doc'
+				}
+			},
+
+			doc: function (s) {
+				s.split('\n\n').forEach( s => {
+					let m = document.createElement('marked-element')
+					m.markdown = '```\n' + s + '```'
+					this.appendChild(m)
+				})
+			}
+		});
+	</script>
+</dom-module>

@@ -1,0 +1,116 @@
+<dom-module id="monitor-app">
+	<template>
+	<style>
+		:host {
+			display: block;
+			text-align: center;
+		}
+
+		.type {
+			display: inline-block;
+			width: 100px;
+			height: 100px;
+			padding-left: 50px;
+			padding-right: 50px;
+			padding-bottom: 50px;
+			text-align: center;
+
+			@apply --shadow-elevation-2dp;
+		}
+
+		.icon {
+			width: 100px;
+			height: 100px;
+		}
+	</style>
+
+	<color-hash></color-hash>
+	<iron-ajax
+		auto
+		url="/data"
+		handle-as="json"
+		last-response="{{response}}"
+	></iron-ajax>
+
+	<template is="dom-repeat" items="[[keys(types)]]">
+	<div class="type">
+		<iron-icon
+			icon="{{get(icons, item)}}"
+			class="icon"
+			style="fill: {{getColor(item)}}">
+		</iron-icon>
+		<div>{{item}}</div>
+		<div>{{get(activities, item)}} / {{get(total, item)}}</div>
+	</div>
+	</template>
+
+	<!-- <pre>{{stringify(response)}}</pre> -->
+
+	</template>
+	<script>
+		Polymer({
+			is: 'monitor-app',
+
+		properties: {
+			icons: {
+				type: Object,
+				value: {
+					watchers: 'mdi:eye',
+					gamblers: 'mdi:cards'
+				}
+			},
+			response: {
+				type: Object,
+				observer: 'watchResponse'
+			},
+			types: Object,
+			total: Object,
+			activities: Object
+		},
+
+		watchResponse: function (e) {
+			console.log(e)
+			this.set('types', Object.keys(e).reduce((p,e) => {
+				p[e] = true
+				return p
+			}, {}))
+			this.set('total', Object.keys(e).reduce( (p,k) => {
+				p[k] = e[k].length
+				return p
+			}, {}))
+			this.set('activities', Object.keys(e).reduce( (p,k) => {
+				p[k] = e[k].reduce( (p, _) => p + (_.assigned ? 1 : 0), 0)
+				return p
+			}, {}))
+
+			console.log(this.activities)
+		},
+
+		eq: function (a, b) {
+			return a == b
+		},
+
+		keys: function (e) {
+			return Object.keys(e)
+		},
+
+		get: function (o, k) {
+			console.log('get', o, k)
+			return o[k]
+		},
+
+		stringify: function (e) {
+			return JSON.stringify(e, false, "  ")
+		},
+
+		getColor: function (s) {
+			return this.querySelector('color-hash').getColor(s)
+		}
+
+		// entries: function (e) {
+		// 	return Object.entries(e).map( _ => { _[0] : _[1] } )
+		// }
+
+		});
+	</script>
+</dom-module>

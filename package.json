@@ -1,0 +1,12 @@
+{
+  "name": "monitor",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "ajv": "^6.1.1",
+    "apidoc": "^0.17.6",
+    "bower": "^1.8.2",
+    "express": "^4.16.2"
+  }
+}

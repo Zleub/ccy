@@ -1,0 +1,24 @@
+<dom-module id="color-box">
+	<style>
+	::content {
+		margin: 8px;
+		padding: 4px;
+		border: 2px solid var(--color);
+		border-radius: 4px;
+	}
+	</style>
+
+	<template>
+	<content></content>
+	</template>
+
+	<script>
+		Polymer({
+			is: 'color-box',
+
+			attached: function () {
+				this.fire('color-hash', this)
+			}
+		});
+	</script>
+</dom-module>

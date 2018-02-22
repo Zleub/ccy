@@ -1,0 +1,62 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"id": "",
+	"type": "object",
+	"properties": {
+		"watchers": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": { "type": "number" },
+					"type": { "type": "string" },
+					"assigned": { "type": "boolean" },
+					"monals": {
+						"type": "array",
+						"items": { "type": "string" }
+					}
+				}
+			}
+		},
+		"gamblers": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": { "type": "number" },
+					"type": { "type": "string" },
+					"assigned": { "type": "boolean" },
+					"symbol": {
+						"type": "object",
+						"properties": {
+							"symbol": { "type": "string" },
+							"status": { "type": "string" },
+							"baseAsset": { "type": "string" },
+							"baseAssetPrecision": { "type": "number" },
+							"quoteAsset": { "type": "string" },
+							"quotePrecision": { "type": "number" },
+							"orderTypes": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"icebergAllowed": { "type": "boolean" },
+							"filters": {
+								"type": "array"
+							}
+						}
+					},
+					"hold": { "type": "number" },
+					"ref": { "type": "number" },
+					"gold": { "type": "number" },
+					"state": { "type": "string" },
+					"init": { "type": "number" },
+					"top": { "type": "number" },
+					"bottom": { "type": "number" },
+					"balance": { "type": "string" }
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,62 @@
+<script src="one-color-all.js"></script>
+<script src="color-harmony.js"></script>
+
+<dom-module id="color-hash">
+	<style>
+		:host {
+			display: block;
+		}
+	</style>
+
+	<template>
+	</template>
+
+	<script>
+		Polymer({
+			is: 'color-hash',
+
+			properties: {
+				colorsArray: {
+					type: Array,
+					value: []
+				},
+				colors: {
+					type: Object,
+					value: {}
+				}
+			},
+
+			listeners: {
+				'color-hash': 'colorize'
+			},
+
+			_hashCode : function(s) {
+				var hash = 0, i, chr, len;
+
+				if (s.length === 0) return hash;
+				for (i = 0, len = s.length; i < len; i++) {
+					chr   = s.charCodeAt(i);
+					hash  = ((hash << 5) - hash) + chr;
+					hash |= 0; // Convert to 32bit integer
+				}
+				return hash;
+			},
+
+			_randomHsl: function (s) {
+				return 'hsla(' + Math.abs(this._hashCode(s) % 360) + ', 65%, 50%, 1)';
+			},
+
+			colorize: function (e) {
+				console.log(e)
+				e.target.customStyle['--color'] = this.colors[e.detail.innerText] || this._randomHsl(e.detail.innerText)
+				this.colors[e.detail.innerText] = e.target.customStyle['--color']
+				e.target.updateStyles()
+			},
+
+			getColor: function (text) {
+				return this.colors[text] || this._randomHsl(text)
+			}
+
+		});
+	</script>
+</dom-module>
