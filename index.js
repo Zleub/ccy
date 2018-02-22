@@ -10,6 +10,9 @@ let load = (path, _) => fs.existsSync(path) ? JSON.parse(fs.readFileSync(path)) 
 let save = (path, _) => fs.writeFileSync(path, JSON.stringify(_))
 let data = load('./data.json', {})
 
+// tmp ??
+data.watchers ? data.watchers.forEach(e => e.assigned ? e.assigned = false : null) : null
+
 let schema = load('./schema.json')
 
 let doc = ''
