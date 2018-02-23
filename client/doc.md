@@ -103,6 +103,12 @@ GET /data -> {
           }
         }
       }
+    },
+    "log": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   }
 }
@@ -111,24 +117,64 @@ GET /data -> {
 
 [WIP] POST /unregister -> some bot
 
-[WIP] GET /watchers/:id -> [
+GET /watchers/length -> Number
+
+GET /watchers/last -> 100 last watchers
+
+GET /watchers/last/:n -> n last watchers
+
+GET /watchers/:n -> some watchers
+
+GET /watchers/ -> 100 fst watchers
+
+GET /watchers/:n/:m -> n to m watchers
+
+GET /watchers/:id -> 
+  {
     id : number
     type : string
     assigned : boolean
     monals : [ string ]
+  }
+
+
+GET /watchers/ -> [
+  {
+    id : number
+    type : string
+    assigned : boolean
+    monals : [ string ]
+  }
 ]
 
 POST /watchers -> [
+  {
     id : number
     type : string
     assigned : boolean
     monals : [ string ]
+  }
 ]
 
-[WIP] GET /gamblers/:id -> [
+
+GET /gamblers/length -> Number
+
+GET /gamblers/last -> 100 last gamblers
+
+GET /gamblers/last/:n -> n last gamblers
+
+GET /gamblers/:n -> some gamblers
+
+GET /gamblers/ -> 100 fst gamblers
+
+GET /gamblers/:n/:m -> n to m gamblers
+
+GET /gamblers/:id -> 
+  {
     id : number
     type : string
     assigned : boolean
+    symbol : {
       symbol : string
       status : string
       baseAsset : string
@@ -137,6 +183,7 @@ POST /watchers -> [
       quotePrecision : number
       orderTypes : [ string ]
       icebergAllowed : boolean
+    }
     hold : number
     ref : number
     gold : number
@@ -145,12 +192,41 @@ POST /watchers -> [
     top : number
     bottom : number
     balance : string
+  }
+
+
+GET /gamblers/ -> [
+  {
+    id : number
+    type : string
+    assigned : boolean
+    symbol : {
+      symbol : string
+      status : string
+      baseAsset : string
+      baseAssetPrecision : number
+      quoteAsset : string
+      quotePrecision : number
+      orderTypes : [ string ]
+      icebergAllowed : boolean
+    }
+    hold : number
+    ref : number
+    gold : number
+    state : string
+    init : number
+    top : number
+    bottom : number
+    balance : string
+  }
 ]
 
 POST /gamblers -> [
+  {
     id : number
     type : string
     assigned : boolean
+    symbol : {
       symbol : string
       status : string
       baseAsset : string
@@ -159,6 +235,7 @@ POST /gamblers -> [
       quotePrecision : number
       orderTypes : [ string ]
       icebergAllowed : boolean
+    }
     hold : number
     ref : number
     gold : number
@@ -167,5 +244,23 @@ POST /gamblers -> [
     top : number
     bottom : number
     balance : string
+  }
 ]
+
+
+log : [ string ]
+GET /log/length -> Number
+
+GET /log/last -> 100 last log
+
+GET /log/last/:n -> n last log
+
+GET /log/:n -> some log
+
+GET /log/ -> 100 fst log
+
+GET /log/:n/:m -> n to m log
+
+POST /log -> some log. Should has a Content-Type: text/plain
+
 

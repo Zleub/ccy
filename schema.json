@@ -57,6 +57,12 @@
 					"balance": { "type": "string" }
 				}
 			}
+		},
+		"log": {
+			"type": "array",
+			"items": {
+				"type": "string"
+			}
 		}
 	}
 }

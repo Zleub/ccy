@@ -1,0 +1,211 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"id": "",
+	"type": "object",
+	"properties": {
+		"register": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"id": { "type": "number" },
+					"type": { "type": "string" },
+					"assigned": { "type": "boolean" },
+					"symbol": {
+						"type": "object",
+						"properties": {
+							"symbol": { "type": "string" },
+							"status": { "type": "string" },
+							"baseAsset": { "type": "string" },
+							"baseAssetPrecision": { "type": "number" },
+							"quoteAsset": { "type": "string" },
+							"quotePrecision": { "type": "number" },
+							"orderTypes": {
+								"type": "array",
+								"items": {
+									"type": "string"
+								}
+							},
+							"icebergAllowed": { "type": "boolean" },
+							"filters": {
+								"type": "array"
+							}
+						}
+					},
+					"hold": { "type": "number" },
+					"ref": { "type": "number" },
+					"gold": { "type": "number" },
+					"state": { "type": "string" },
+					"init": { "type": "number" },
+					"top": { "type": "number" },
+					"bottom": { "type": "number" },
+					"balance": { "type": "string" }
+				}
+			}
+		},
+		"users": {
+			"type": "object",
+			"properties": {
+				"id_user" : { "type": "number" },
+				"login" : { "type": "string" },
+				"password" : { "type": "string" },
+				"token" : { "type": "string" }
+			}
+		},
+		"platforms": {
+			"type": "object",
+			"properties": {
+				"id_platform" : { "type": "number" },
+				"name" : { "type": "string" },
+				"status" : { "type": "number" },
+				"refresh_frequency" : { "type": "number" },
+				"refresh_max_requests" : { "type": "number" },
+				"refresh_nb_requests" : { "type": "number" },
+				"refresh_numbererval_end" : { "type": "number" },
+				"created_at" : { "type": "number" },
+				"updated_at" : { "type": "number" }
+			}
+		},
+		"platform_markets": {
+			"type": "object",
+			"properties": {
+				"id_platform_market": { "type": "number" },
+				"platform_id": { "type": "number" },
+				"market_id": { "type": "number" },
+				"external_market_id": { "type": "number" },
+				"external_market_code": { "type": "string" },
+				"external_currency_code": { "type": "string" },
+				"external_currency_base_code": { "type": "string" },
+				"count_boll_short": { "type": "number" },
+				"count_boll_long": { "type": "number" },
+				"sum_highest": { "type": "number" },
+				"sum_higher": { "type": "number" },
+				"sum_lower": { "type": "number" },
+				"sum_lowest": { "type": "number" },
+				"status": { "type": "number" },
+				"created_at": { "type": "number" },
+				"updated_at": { "type": "number" }
+			}
+		},
+		"current_values": {
+			"type": "object",
+			"properties": {
+				"id_current_value": { "type": "number" },
+				"platform_market_id": { "type": "number" },
+				"value": { "type": "number" },
+				"bid": { "type": "number" },
+				"ask": { "type": "number" },
+				"created_at": { "type": "number" },
+				"updated_at": { "type": "number" }
+			}
+		},
+		"klines": {
+			"type": "object",
+			"properties": {
+				"id_kline": { "type": "number" },
+				"platform_market_id": { "type": "number" },
+				"open": { "type": "number" },
+				"close": { "type": "number" },
+				"high": { "type": "number" },
+				"low": { "type": "number" },
+				"volume": { "type": "number" },
+				"buy_volume": { "type": "number" },
+				"open_timestamp": { "type": "number" },
+				"close_timestamp": { "type": "number" },
+				"current_timestamp": { "type": "number" },
+				"closed": { "type": "number" },
+				"bollup": { "type": "number" },
+				"bolldown": { "type": "number" },
+				"moyenne": { "type": "number" },
+				"highest": { "type": "number" },
+				"higher": { "type": "number" },
+				"lower": { "type": "number" },
+				"lowest": { "type": "number" },
+				"created_at": { "type": "number" },
+				"updated_at": { "type": "number" }
+			}
+		},
+		"markets": {
+			"type": "object",
+			"properties": {
+				"id_market": { "type": "number" },
+				"currency_id": { "type": "number" },
+				"currency_base_id": { "type": "number" },
+				"status": { "type": "number" },
+				"created_at": { "type": "number" },
+				"updated_at": { "type": "number" }
+			}
+		},
+		"currencies": {
+			"type": "object",
+			"properties": {
+				"id_currency": { "type": "number" },
+				"code": { "type": "string" },
+				"name": { "type": "string" },
+				"status": { "type": "number" },
+				"created_at": { "type": "number" },
+				"updated_at": { "type": "number" }
+			}
+		},
+		"requests": {
+			"type": "object",
+			"properties": {
+				"id_request": { "type": "number" },
+				"platform_id": { "type": "number" },
+				"url": { "type": "string" },
+				"type": { "type": "number" },
+				"code": { "type": "number" },
+				"priority": { "type": "number" },
+				"status": { "type": "number" },
+				"refresh_frequency": { "type": "number" },
+				"updated_until": { "type": "number" },
+				"created_at": { "type": "number" },
+				"updated_at": { "type": "number" }
+			}
+		},
+		"transactions": {
+			"type": "object",
+			"properties": {
+				"id_transaction": { "type": "number" },
+				"platform_market_id": { "type": "number" },
+				"price": { "type": "number" },
+				"volume": { "type": "number" },
+				"timestamp": { "type": "number" },
+				"type": { "type": "number" },
+				"status": { "type": "number" },
+				"created_at": { "type": "number" },
+				"updated_at": { "type": "number" }
+			}
+		},
+		"robots": {
+			"type": "object",
+			"properties": {
+				"id_robot": { "type": "number" },
+				"current_history_value_id": { "type": "number" },
+				"status": { "type": "number" },
+				"created_at": { "type": "number" },
+				"updated_at": { "type": "number" }
+			}
+		},
+		"robot_histories": {
+			"type": "object",
+			"properties": {
+				"id_robot_history": { "type": "number" },
+				"robot_id": { "type": "number" },
+				"status": { "type": "number" },
+				"created_at": { "type": "number" },
+				"updated_at": { "type": "number" }
+			}
+		},
+		"robot_history_values": {
+			"type": "object",
+			"properties": {
+				"id_robot_history_value": { "type": "number" },
+				"robot_history_id": { "type": "number" },
+				"currency_id": { "type": "number" },
+				"value": { "type": "number" }
+			}
+		}
+
+	}
+}

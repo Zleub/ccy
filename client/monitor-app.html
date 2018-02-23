@@ -6,12 +6,24 @@
 			text-align: center;
 		}
 
+		.left {
+			width: 48%;
+			display: inline-block;
+			text-align: left;
+		}
+
+		.right {
+			width: 48%;
+			display: inline-block;
+			text-align: right;
+		}
+
 		.type {
 			display: inline-block;
 			width: 100px;
-			height: 100px;
-			padding-left: 50px;
-			padding-right: 50px;
+			height: 50px;
+			padding-left: 25px;
+			padding-right: 25px;
 			padding-bottom: 50px;
 			text-align: center;
 
@@ -19,8 +31,8 @@
 		}
 
 		.icon {
-			width: 100px;
-			height: 100px;
+			width: inherit;
+			height: inherit;
 		}
 	</style>
 
@@ -30,6 +42,18 @@
 		url="/data"
 		handle-as="json"
 		last-response="{{response}}"
+	></iron-ajax>
+	<iron-ajax
+		auto
+		url="/log/last/8"
+		handle-as="json"
+		last-response="{{response.log}}"
+	></iron-ajax>
+	<iron-ajax
+		auto
+		url="/log/length"
+		handle-as="json"
+		last-response="{{response.log_length}}"
 	></iron-ajax>
 
 	<template is="dom-repeat" items="[[keys(types)]]">
@@ -43,8 +67,26 @@
 		<div>{{get(activities, item)}} / {{get(total, item)}}</div>
 	</div>
 	</template>
+	<div class="type">
+		<iron-icon
+			icon="{{get(icons, 'log')}}"
+			class="icon"
+			style="fill: {{getColor('log')}}">
+		</iron-icon>
+		<div>log</div>
+		<div>{{response.log.length}} / {{response.log_length}}</div>
+	</div>
 
-	<!-- <pre>{{stringify(response)}}</pre> -->
+	<div class="layout horizontal">
+	<div class="left start">
+		<monitor-doc></monitor-doc>
+	</div>
+	<div class=right>
+		<template is="dom-repeat" items="[[response.log]]">
+			<paper-item>{{item}}</paper-item>
+		</template>
+	</div>
+	<div>
 
 	</template>
 	<script>
@@ -56,7 +98,8 @@
 				type: Object,
 				value: {
 					watchers: 'mdi:eye',
-					gamblers: 'mdi:cards'
+					gamblers: 'mdi:cards',
+					log: 'mdi:message-text'
 				}
 			},
 			response: {
@@ -69,7 +112,6 @@
 		},
 
 		watchResponse: function (e) {
-			console.log(e)
 			this.set('types', Object.keys(e).reduce((p,e) => {
 				p[e] = true
 				return p
@@ -83,6 +125,7 @@
 				return p
 			}, {}))
 
+
 			console.log(this.activities)
 		},
 
@@ -95,7 +138,6 @@
 		},
 
 		get: function (o, k) {
-			console.log('get', o, k)
 			return o[k]
 		},
 

@@ -27,10 +27,27 @@
 			},
 
 			doc: function (s) {
-				s.split('\n\n').forEach( s => {
+				s.split('\n\n').filter(e => e != '').forEach( s => {
+					if (s.match(/(.+)->/) == null)
+						return
+
+					let _ = document.createElement('div')
+
+					let b = document.createElement('paper-button')
+					b.raised = true
+
+					b.innerText = s.match(/(.+)->/)[1]
+					let d = document.createElement('iron-collapse')
+
+					b.addEventListener('tap', () => d.toggle())
 					let m = document.createElement('marked-element')
 					m.markdown = '```\n' + s + '```'
-					this.appendChild(m)
+					d.appendChild(m)
+
+					_.appendChild(b)
+					_.appendChild(d)
+
+					this.appendChild(_)
 				})
 			}
 		});
