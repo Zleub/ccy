@@ -1,0 +1,1051 @@
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+Ê> ~/ccy on master / node spawner.js             14:45:59
+[ 'BTC', 'ETH', 'USDT', 'BNB', 'LTC', 'NEO', 'QTUM', 'EOS
+' ]
+stdout: [ { ETHBTC: 'BTCETH', BNBBTC: 'BTCBNB', BNBETH: '
+ETHBNB' },
+  { BTCETH: [ 'BTC', 'ETH' ],
+    BTCBNB: [ 'BTC', 'BNB' ],
+    ETHBTC: [ 'ETH', 'BTC' ],
+    ETHBNB: [ 'ETH', 'BNB' ],
+    BNBBTC: [ 'BNB', 'BTC' ],
+    BNBETH: [ 'BNB', 'ETH' ] },
+  { BTCBTC: 'BNB',
+    BTCETH: 'BNB',
+    BTCBNB: 'ETH',
+    ETHBTC: 'BNB',
+    ETHETH: 'BNB',
+    ETHBNB: 'BTC',
+    BNBBTC: 'ETH',
+    BNBETH: 'BTC',
+    BNBBNB: 'ETH' } ]
+14:46:25 GMT+0100 (CET)
+
+stdout: [ { ETHBTC: 'BTCETH', LTCBTC: 'BTCLTC', LTCETH: '
+ETHLTC' },
+  { BTCETH: [ 'BTC', 'ETH' ],
+    BTCLTC: [ 'BTC', 'LTC' ],
+    ETHBTC: [ 'ETH', 'BTC' ],
+    ETHLTC: [ 'ETH', 'LTC' ],
+    LTCBTC: [ 'LTC', 'BTC' ],
+    LTCETH: [ 'LTC', 'ETH' ] },
+  { BTCBTC: 'LTC',
+    BTCETH: 'LTC',
+    BTCLTC: 'ETH',
+    ETHBTC: 'LTC',
+    ETHETH: 'LTC',
+    ETHLTC: 'BTC',
+    LTCBTC: 'ETH',
+    LTCETH: 'BTC',
+    LTCLTC: 'ETH' } ]
+14:46:25 GMT+0100 (CET)
+
+stdout: [ { ETHBTC: 'BTCETH', NEOBTC: 'BTCNEO', NEOETH: '
+ETHNEO' },
+  { BTCETH: [ 'BTC', 'ETH' ],
+    BTCNEO: [ 'BTC', 'NEO' ],
+    ETHBTC: [ 'ETH', 'BTC' ],
+    ETHNEO: [ 'ETH', 'NEO' ],
+    NEOBTC: [ 'NEO', 'BTC' ],
+    NEOETH: [ 'NEO', 'ETH' ] },
+  { BTCBTC: 'NEO',
+    BTCETH: 'NEO',
+    BTCNEO: 'ETH',
+    ETHBTC: 'NEO',
+    ETHETH: 'NEO',
+    ETHNEO: 'BTC',
+    NEOBTC: 'ETH',
+    NEOETH: 'BTC',
+    NEONEO: 'ETH' } ]
+14:46:25 GMT+0100 (CET)
+
+stdout: [ { ETHBTC: 'BTCETH', QTUMBTC: 'BTCQTUM', QTUMETH
+: 'ETHQTUM' },
+  { BTCETH: [ 'BTC', 'ETH' ],
+    BTCQTUM: [ 'BTC', 'QTUM' ],
+    ETHBTC: [ 'ETH', 'BTC' ],
+    ETHQTUM: [ 'ETH', 'QTUM' ],
+    QTUMBTC: [ 'QTUM', 'BTC' ],
+    QTUMETH: [ 'QTUM', 'ETH' ] },
+  { BTCBTC: 'QTUM',
+    BTCETH: 'QTUM',
+    BTCQTUM: 'ETH',
+    ETHBTC: 'QTUM',
+    ETHETH: 'QTUM',
+    ETHQTUM: 'BTC',
+    QTUMBTC: 'ETH',
+    QTUMETH: 'BTC',
+    QTUMQTUM: 'ETH' } ]
+14:46:25 GMT+0100 (CET)
+
+stderr: events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: unexpected server response (504)
+    at ClientRequest._req.on (/home/adebray/ccy/node_modu
+les/binance-api-node/node_modules/ws/lib/WebSocket.js:653
+:21)
+    at emitOne (events.js:116:13)
+    at ClientRequest.emit (events.js:211:7)
+    at HTTPParser.parserOnIncomingClient [as onIncoming]
+(_http_client.js:551:21)
+    at HTTPParser.parserOnHeadersComplete (_http_common.j
+s:117:23)
+    at TLSSocket.socketOnData (_http_client.js:440:20)
+    at emitOne (events.js:116:13)
+    at TLSSocket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+
+stdout: [ { ETHBTC: 'BTCETH', EOSBTC: 'BTCEOS', EOSETH: '
+ETHEOS' },
+  { BTCETH: [ 'BTC', 'ETH' ],
+    BTCEOS: [ 'BTC', 'EOS' ],
+    ETHBTC: [ 'ETH', 'BTC' ],
+    ETHEOS: [ 'ETH', 'EOS' ],
+    EOSBTC: [ 'EOS', 'BTC' ],
+    EOSETH: [ 'EOS', 'ETH' ] },
+  { BTCBTC: 'EOS',
+    BTCETH: 'EOS',
+    BTCEOS: 'ETH',
+    ETHBTC: 'EOS',
+    ETHETH: 'EOS',
+    ETHEOS: 'BTC',
+    EOSBTC: 'ETH',
+    EOSETH: 'BTC',
+    EOSEOS: 'ETH' } ]
+14:46:25 GMT+0100 (CET)
+
+stdout: [ { BNBBTC: 'BTCBNB', LTCBTC: 'BTCLTC', LTCBNB: '
+BNBLTC' },
+  { BTCBNB: [ 'BTC', 'BNB' ],
+    BTCLTC: [ 'BTC', 'LTC' ],
+    BNBBTC: [ 'BNB', 'BTC' ],
+    BNBLTC: [ 'BNB', 'LTC' ],
+    LTCBTC: [ 'LTC', 'BTC' ],
+    LTCBNB: [ 'LTC', 'BNB' ] },
+  { BTCBTC: 'LTC',
+    BTCBNB: 'LTC',
+    BTCLTC: 'BNB',
+    BNBBTC: 'LTC',
+    BNBBNB: 'LTC',
+    BNBLTC: 'BTC',
+    LTCBTC: 'BNB',
+    LTCBNB: 'BTC',
+    LTCLTC: 'BNB' } ]
+14:46:26 GMT+0100 (CET)
+
+stdout: [ { BNBBTC: 'BTCBNB', NEOBTC: 'BTCNEO', NEOBNB: '
+BNBNEO' },
+  { BTCBNB: [ 'BTC', 'BNB' ],
+    BTCNEO: [ 'BTC', 'NEO' ],
+    BNBBTC: [ 'BNB', 'BTC' ],
+    BNBNEO: [ 'BNB', 'NEO' ],
+    NEOBTC: [ 'NEO', 'BTC' ],
+    NEOBNB: [ 'NEO', 'BNB' ] },
+  { BTCBTC: 'NEO',
+    BTCBNB: 'NEO',
+    BTCNEO: 'BNB',
+    BNBBTC: 'NEO',
+    BNBBNB: 'NEO',
+    BNBNEO: 'BTC',
+    NEOBTC: 'BNB',
+    NEOBNB: 'BTC',
+    NEONEO: 'BNB' } ]
+14:46:26 GMT+0100 (CET)
+
+stdout: [ { BNBETH: 'ETHBNB', LTCETH: 'ETHLTC', LTCBNB: '
+BNBLTC' },
+  { ETHBNB: [ 'ETH', 'BNB' ],
+    ETHLTC: [ 'ETH', 'LTC' ],
+    BNBETH: [ 'BNB', 'ETH' ],
+    BNBLTC: [ 'BNB', 'LTC' ],
+    LTCETH: [ 'LTC', 'ETH' ],
+    LTCBNB: [ 'LTC', 'BNB' ] },
+  { ETHETH: 'LTC',
+    ETHBNB: 'LTC',
+    ETHLTC: 'BNB',
+    BNBETH: 'LTC',
+    BNBBNB: 'LTC',
+    BNBLTC: 'ETH',
+    LTCETH: 'BNB',
+    LTCBNB: 'ETH',
+    LTCLTC: 'BNB' } ]
+14:46:29 GMT+0100 (CET)
+
+stdout: [ { BNBETH: 'ETHBNB', NEOETH: 'ETHNEO', NEOBNB: '
+BNBNEO' },
+  { ETHBNB: [ 'ETH', 'BNB' ],
+    ETHNEO: [ 'ETH', 'NEO' ],
+    BNBETH: [ 'BNB', 'ETH' ],
+    BNBNEO: [ 'BNB', 'NEO' ],
+    NEOETH: [ 'NEO', 'ETH' ],
+    NEOBNB: [ 'NEO', 'BNB' ] },
+  { ETHETH: 'NEO',
+    ETHBNB: 'NEO',
+    ETHNEO: 'BNB',
+    BNBETH: 'NEO',
+    BNBBNB: 'NEO',
+    BNBNEO: 'ETH',
+    NEOETH: 'BNB',
+    NEOBNB: 'ETH',
+    NEONEO: 'BNB' } ]
+14:46:29 GMT+0100 (CET)
+
+stdout: [ { BTCUSDT: 'USDTBTC', ETHUSDT: 'USDTETH', ETHBT
+C: 'BTCETH' },
+  { USDTBTC: [ 'USDT', 'BTC' ],
+    USDTETH: [ 'USDT', 'ETH' ],
+    BTCUSDT: [ 'BTC', 'USDT' ],
+    BTCETH: [ 'BTC', 'ETH' ],
+    ETHUSDT: [ 'ETH', 'USDT' ],
+    ETHBTC: [ 'ETH', 'BTC' ] },
+  { USDTUSDT: 'ETH',
+    USDTBTC: 'ETH',
+    USDTETH: 'BTC',
+    BTCUSDT: 'ETH',
+    BTCBTC: 'ETH',
+    BTCETH: 'USDT',
+    ETHUSDT: 'BTC',
+    ETHBTC: 'USDT',
+    ETHETH: 'BTC' } ]
+14:46:32 GMT+0100 (CET)
+
+stdout: [ { BTCUSDT: 'USDTBTC', BNBUSDT: 'USDTBNB', BNBBT
+C: 'BTCBNB' },
+  { USDTBTC: [ 'USDT', 'BTC' ],
+    USDTBNB: [ 'USDT', 'BNB' ],
+    BTCUSDT: [ 'BTC', 'USDT' ],
+    BTCBNB: [ 'BTC', 'BNB' ],
+    BNBUSDT: [ 'BNB', 'USDT' ],
+    BNBBTC: [ 'BNB', 'BTC' ] },
+  { USDTUSDT: 'BNB',
+    USDTBTC: 'BNB',
+    USDTBNB: 'BTC',
+    BTCUSDT: 'BNB',
+    BTCBTC: 'BNB',
+    BTCBNB: 'USDT',
+    BNBUSDT: 'BTC',
+    BNBBTC: 'USDT',
+    BNBBNB: 'BTC' } ]
+14:46:31 GMT+0100 (CET)
+
+stdout: [ { BTCUSDT: 'USDTBTC', LTCUSDT: 'USDTLTC', LTCBT
+C: 'BTCLTC' },
+  { USDTBTC: [ 'USDT', 'BTC' ],
+    USDTLTC: [ 'USDT', 'LTC' ],
+    BTCUSDT: [ 'BTC', 'USDT' ],
+    BTCLTC: [ 'BTC', 'LTC' ],
+    LTCUSDT: [ 'LTC', 'USDT' ],
+    LTCBTC: [ 'LTC', 'BTC' ] },
+  { USDTUSDT: 'LTC',
+    USDTBTC: 'LTC',
+    USDTLTC: 'BTC',
+    BTCUSDT: 'LTC',
+    BTCBTC: 'LTC',
+    BTCLTC: 'USDT',
+    LTCUSDT: 'BTC',
+    LTCBTC: 'USDT',
+    LTCLTC: 'BTC' } ]
+14:46:31 GMT+0100 (CET)
+
+stdout: [ { BTCUSDT: 'USDTBTC', NEOUSDT: 'USDTNEO', NEOBT
+C: 'BTCNEO' },
+  { USDTBTC: [ 'USDT', 'BTC' ],
+    USDTNEO: [ 'USDT', 'NEO' ],
+    BTCUSDT: [ 'BTC', 'USDT' ],
+    BTCNEO: [ 'BTC', 'NEO' ],
+    NEOUSDT: [ 'NEO', 'USDT' ],
+    NEOBTC: [ 'NEO', 'BTC' ] },
+  { USDTUSDT: 'NEO',
+    USDTBTC: 'NEO',
+    USDTNEO: 'BTC',
+    BTCUSDT: 'NEO',
+    BTCBTC: 'NEO',
+    BTCNEO: 'USDT',
+    NEOUSDT: 'BTC',
+    NEOBTC: 'USDT',
+    NEONEO: 'BTC' } ]
+14:46:32 GMT+0100 (CET)
+
+stdout: [ { ETHUSDT: 'USDTETH', BNBUSDT: 'USDTBNB', BNBET
+H: 'ETHBNB' },
+  { USDTETH: [ 'USDT', 'ETH' ],
+    USDTBNB: [ 'USDT', 'BNB' ],
+    ETHUSDT: [ 'ETH', 'USDT' ],
+    ETHBNB: [ 'ETH', 'BNB' ],
+    BNBUSDT: [ 'BNB', 'USDT' ],
+    BNBETH: [ 'BNB', 'ETH' ] },
+  { USDTUSDT: 'BNB',
+    USDTETH: 'BNB',
+    USDTBNB: 'ETH',
+    ETHUSDT: 'BNB',
+    ETHETH: 'BNB',
+    ETHBNB: 'USDT',
+    BNBUSDT: 'ETH',
+    BNBETH: 'USDT',
+    BNBBNB: 'ETH' } ]
+14:46:31 GMT+0100 (CET)
+
+stdout: [ { ETHUSDT: 'USDTETH', LTCUSDT: 'USDTLTC', LTCET
+H: 'ETHLTC' },
+  { USDTETH: [ 'USDT', 'ETH' ],
+    USDTLTC: [ 'USDT', 'LTC' ],
+    ETHUSDT: [ 'ETH', 'USDT' ],
+    ETHLTC: [ 'ETH', 'LTC' ],
+    LTCUSDT: [ 'LTC', 'USDT' ],
+    LTCETH: [ 'LTC', 'ETH' ] },
+  { USDTUSDT: 'LTC',
+    USDTETH: 'LTC',
+    USDTLTC: 'ETH',
+    ETHUSDT: 'LTC',
+    ETHETH: 'LTC',
+    ETHLTC: 'USDT',
+    LTCUSDT: 'ETH',
+    LTCETH: 'USDT',
+    LTCLTC: 'ETH' } ]
+14:46:32 GMT+0100 (CET)
+
+stdout: [ { ETHUSDT: 'USDTETH', NEOUSDT: 'USDTNEO', NEOET
+H: 'ETHNEO' },
+  { USDTETH: [ 'USDT', 'ETH' ],
+    USDTNEO: [ 'USDT', 'NEO' ],
+    ETHUSDT: [ 'ETH', 'USDT' ],
+    ETHNEO: [ 'ETH', 'NEO' ],
+    NEOUSDT: [ 'NEO', 'USDT' ],
+    NEOETH: [ 'NEO', 'ETH' ] },
+  { USDTUSDT: 'NEO',
+    USDTETH: 'NEO',
+    USDTNEO: 'ETH',
+    ETHUSDT: 'NEO',
+    ETHETH: 'NEO',
+    ETHNEO: 'USDT',
+    NEOUSDT: 'ETH',
+    NEOETH: 'USDT',
+    NEONEO: 'ETH' } ]
+14:46:32 GMT+0100 (CET)
+
+stdout: [ { BNBUSDT: 'USDTBNB', LTCUSDT: 'USDTLTC', LTCBN
+B: 'BNBLTC' },
+  { USDTBNB: [ 'USDT', 'BNB' ],
+    USDTLTC: [ 'USDT', 'LTC' ],
+    BNBUSDT: [ 'BNB', 'USDT' ],
+    BNBLTC: [ 'BNB', 'LTC' ],
+    LTCUSDT: [ 'LTC', 'USDT' ],
+    LTCBNB: [ 'LTC', 'BNB' ] },
+  { USDTUSDT: 'LTC',
+    USDTBNB: 'LTC',
+    USDTLTC: 'BNB',
+    BNBUSDT: 'LTC',
+    BNBBNB: 'LTC',
+    BNBLTC: 'USDT',
+    LTCUSDT: 'BNB',
+    LTCBNB: 'USDT',
+    LTCLTC: 'BNB' } ]
+14:46:32 GMT+0100 (CET)
+
+stdout: [ { BNBUSDT: 'USDTBNB', NEOUSDT: 'USDTNEO', NEOBN
+B: 'BNBNEO' },
+  { USDTBNB: [ 'USDT', 'BNB' ],
+    USDTNEO: [ 'USDT', 'NEO' ],
+    BNBUSDT: [ 'BNB', 'USDT' ],
+    BNBNEO: [ 'BNB', 'NEO' ],
+    NEOUSDT: [ 'NEO', 'USDT' ],
+    NEOBNB: [ 'NEO', 'BNB' ] },
+  { USDTUSDT: 'NEO',
+    USDTBNB: 'NEO',
+    USDTNEO: 'BNB',
+    BNBUSDT: 'NEO',
+    BNBBNB: 'NEO',
+    BNBNEO: 'USDT',
+    NEOUSDT: 'BNB',
+    NEOBNB: 'USDT',
+    NEONEO: 'BNB' } ]
+14:46:32 GMT+0100 (CET)
+
+child process exited with code 255
+child process exited with code 1
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 1
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+child process exited with code 255
+stderr: events.js:183
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: unexpected server response (502)
+    at ClientRequest._req.on (/home/adebray/ccy/node_modu
+les/binance-api-node/node_modules/ws/lib/WebSocket.js:653
+:21)
+    at emitOne (events.js:116:13)
+    at ClientRequest.emit (events.js:211:7)
+    at HTTPParser.parserOnIncomingClient [as onIncoming]
+(_http_client.js:551:21)
+    at HTTPParser.parserOnHeadersComplete (_http_common.j
+s:117:23)
+    at TLSSocket.socketOnData (_http_client.js:440:20)
+    at emitOne (events.js:116:13)
+    at TLSSocket.emit (events.js:211:7)
+    at addChunk (_stream_readable.js:263:12)
+    at readableAddChunk (_stream_readable.js:250:11)
+
+child process exited with code 1
+child process exited with code 1
+
