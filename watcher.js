@@ -123,7 +123,12 @@ let post = (exchange) => {
 		req.write(JSON.stringify({
 			type: vars.type,
 			monals: vars.monals,
+<<<<<<< HEAD
 			id: vars.id
+=======
+			id: vars.id,
+			assigned: vars.assigned
+>>>>>>> 9c827210a8f75eeb144187d162a6fe9796c30fe9
 		}))
 		req.end()
 	})
@@ -179,6 +184,7 @@ client.exchangeInfo().then( exchange => {
 						// child_process.exec(`curl -X POST -H 'Content-type: application/json' --data '{"text": "${str}"}' https://hooks.slack.com/services/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`, (err, stdout, stderr) => {
 							console.log(str)
 						// })
+<<<<<<< HEAD
 						let req = require(`http`).request({
 							protocol: 'http:',
 							host: 'monitor.adebray.ovh',
@@ -195,6 +201,8 @@ client.exchangeInfo().then( exchange => {
 						req.write(str)
 						req.end()
 
+=======
+>>>>>>> 9c827210a8f75eeb144187d162a6fe9796c30fe9
 
 					}
 				}
