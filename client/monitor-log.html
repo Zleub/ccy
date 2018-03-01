@@ -1,0 +1,186 @@
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dat-gui/0.7.1/dat.gui.min.js">
+
+</script>
+
+<dom-module id="monitor-log">
+	<template>
+		<style>
+			:host {
+				display: block;
+				align-content: center;
+			}
+
+			input {
+				display: block;
+			}
+
+			google-chart {
+				border: 1px solid 1px;
+				width: 90vw;
+				height: 90vh;
+			}
+		</style>
+
+	<iron-ajax
+		id=getlog
+		auto
+		url={{getLog(n)}}
+		handle-as="json"
+		last-response="{{response}}"
+	></iron-ajax>
+	<iron-ajax
+		auto
+		url="/log/length"
+		handle-as="json"
+		last-response="{{response.log_length}}"
+	></iron-ajax>
+
+	<!-- <paper-input type="number" label=n value={{n}}></paper-input>
+	<paper-input type="number" label=scale value={{scale}}></paper-input> -->
+
+	<!-- <google-chart data={{data}}></google-chart> -->
+	{{date(first_time)}} -> {{date(last_time)}}
+	<canvas width=1024 height=600 style='border: 1px solid black'></canvas>
+	<paper-button raised on-tap="refresh">Refrsh</paper-button>
+	</template>
+	<script>
+		Polymer({
+			is: 'monitor-log',
+
+		properties: {
+			response: {
+				type: Object,
+				observer: 'responseObserver'
+			},
+			n: {
+				type: Number,
+				value: 100,
+				observer: 'clear'
+			},
+			scale: {
+				type: Number,
+				value: 2000,
+				observer: 'redraw'
+			},
+			data: Array,
+			colors: {
+				type: Object,
+				value: {}
+			}
+		},
+
+		attached: function () {
+			let canvas = this.querySelector('canvas')
+
+			const width = window.innerWidth - 100;
+			const height = window.innerHeight / 2;
+
+			console.log(width, height)
+			if (canvas.width !== width || canvas.height !== height) {
+				canvas.width = width;
+				canvas.height = height;
+			}
+
+			var gui = new dat.GUI();
+			gui.add(this, 'n');
+			gui.add(this, 'scale').min(0);
+		},
+
+		refresh: function() {
+			this.$.getlog.generateRequest()
+		},
+
+		redraw: function (e) {
+			this.clear()
+			if (this.response)
+				this.responseObserver(this.response)
+		},
+
+		clear: function (e) {
+			let canvas = this.querySelector('canvas')
+			var ctx = canvas.getContext('2d');
+			ctx.clearRect(0, 0, canvas.width, canvas.height)
+			if (this.querySelector('.legend'))
+				this.removeChild( this.querySelector('.legend') )
+
+		},
+
+		date: function (n) {
+			return new Date(n)
+		},
+
+		getLog: function (n) {
+			return `/log/last/${n}`
+		},
+
+		responseObserver: function(e) {
+			this.set('data', [])
+			this.push('data', ['Time'])
+			let _e = e.reduce( (p,e) => {
+				let _e = JSON.parse(e)
+				if (!this.data[0].some(_ => _ == _e.message.symbols.toString()))
+					this.data[0].push(_e.message.symbols.toString())
+				if (!p[_e.eventTime])
+					p[_e.eventTime] = {}
+
+				p[_e.eventTime][_e.message.symbols.toString()] = _e.message.arbitrage
+				return p
+			}, {})
+
+			Object.keys(_e).forEach( k => {
+				let r = [ Number(k) ]
+
+				this.data[0].forEach(_k => {
+					if (_e[k][_k])
+						r.push(_e[k][_k])
+				})
+
+				this.data.push(r)
+			})
+
+			this.draw()
+		},
+
+		draw: function () {
+			if (this.data.length < 2)
+				return
+
+			this.clear()
+			console.log(this.data[1][0])
+			let canvas = this.querySelector('canvas')
+			this.first_time = this.data[1][0]
+			this.last_time = this.data[this.data.length - 1][0]
+			let range = this.last_time - this.first_time
+
+			let step = Math.floor(range / canvas.width) || Math.floor(canvas.width / range)
+
+			var ctx = canvas.getContext('2d');
+			this.set('colors', this.data[0].reduce( (p,e) => {
+				if (!p[e])
+					p[e] = document.querySelector('color-hash').getColor(e)
+				return p
+			}, this.colors))
+
+			// let _d = document.createElement('div')
+			// _d.className += 'legend'
+			// _d.style.display = 'inline-block'
+			// Object.keys(this.colors).forEach( k => {
+			// 	let d = document.createElement('div')
+			// 	d.style['color'] = this.colors[k]
+			// 	d.innerText = k
+			// 	_d.appendChild(d)
+			// })
+			// this.appendChild(_d)
+
+			for (var i = 1; i < this.data.length; i += 1) {
+				let t = this.last_time - this.data[i].splice(0, 1)
+				this.data[i].forEach( (e,_i) => {
+					ctx.fillStyle = this.colors[ this.data[0][_i] ]
+					// console.log( (t / range) * canvas.width )
+					ctx.fillRect((t / range) * canvas.width, canvas.height, 1, -(Number(e) - 1) * (this.scale * _i));
+				})
+			}
+		}
+	});
+	</script>
+</dom-module>

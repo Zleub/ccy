@@ -4,6 +4,7 @@
 		:host {
 			display: block;
 			text-align: center;
+			--paper-tabs-selection-bar-color: blue
 		}
 
 		.left {
@@ -34,15 +35,20 @@
 			width: inherit;
 			height: inherit;
 		}
+
+		section {
+			padding: 4px;
+			margin: 8px;
+		}
 	</style>
 
 	<color-hash></color-hash>
-	<iron-ajax
+	<!-- <iron-ajax
 		auto
 		url="/data"
 		handle-as="json"
 		last-response="{{response}}"
-	></iron-ajax>
+	></iron-ajax> -->
 	<iron-ajax
 		auto
 		url="/log/last/8"
@@ -53,39 +59,56 @@
 		auto
 		url="/log/length"
 		handle-as="json"
-		last-response="{{response.log_length}}"
+		last-response="{{log_length}}"
 	></iron-ajax>
 
-	<template is="dom-repeat" items="[[keys(types)]]">
-	<div class="type">
-		<iron-icon
-			icon="{{get(icons, item)}}"
-			class="icon"
-			style="fill: {{getColor(item)}}">
-		</iron-icon>
-		<div>{{item}}</div>
-		<div>{{get(activities, item)}} / {{get(total, item)}}</div>
-	</div>
-	</template>
-	<div class="type">
-		<iron-icon
-			icon="{{get(icons, 'log')}}"
-			class="icon"
-			style="fill: {{getColor('log')}}">
-		</iron-icon>
-		<div>log</div>
-		<div>{{response.log.length}} / {{response.log_length}}</div>
-	</div>
+	<paper-tabs selected={{selected}} fit-container>
+		<paper-tab>Home</paper-tab>
+		<paper-tab>Logs</paper-tab>
+	</paper-tabs>
 
-	<div class="layout horizontal">
-	<div class="left start">
-		<monitor-doc></monitor-doc>
-	</div>
-	<div class=right>
+
+	<iron-pages selected={{selected}}>
+	  <section>
+		  <template is="dom-repeat" items="[[keys(types)]]">
+  		<div class="type">
+  			<iron-icon
+  				icon="{{get(icons, item)}}"
+  				class="icon"
+  				style="fill: {{getColor(item)}}">
+  			</iron-icon>
+  			<div>{{item}}</div>
+  			<div>{{get(activities, item)}} / {{get(total, item)}}</div>
+  		</div>
+  		</template>
+  		<div class="type">
+  			<iron-icon
+  				icon="{{get(icons, 'log')}}"
+  				class="icon"
+  				style="fill: {{getColor('log')}}">
+  			</iron-icon>
+  			<div>log</div>
+  			<div>{{log_length}}</div>
+  		</div>
+
+  		<div class="layout horizontal">
+  		<div class="left start">
+  			<monitor-doc></monitor-doc>
+  		</div>
+
+	  </section>
+	  <section>
+		  <monitor-log></monitor-log>
+
+	  </section>
+	  <section></section>
+	</iron-pages>
+
+	<!-- <div class=right>
 		<template is="dom-repeat" items="[[response.log]]">
 			<paper-item>{{item}}</paper-item>
 		</template>
-	</div>
+	</div> -->
 	<div>
 
 	</template>
@@ -94,6 +117,10 @@
 			is: 'monitor-app',
 
 		properties: {
+			selected: {
+				type: Number,
+				value: 1
+			},
 			icons: {
 				type: Object,
 				value: {
@@ -121,7 +148,10 @@
 				return p
 			}, {}))
 			this.set('activities', Object.keys(e).reduce( (p,k) => {
-				p[k] = e[k].reduce( (p, _) => p + (_.assigned ? 1 : 0), 0)
+				p[k] = e[k].reduce( (p, _) => {
+					console.log(_.assigned != false)
+					return p + (_.assigned != false ? 1 : 0)
+				}, 0)
 				return p
 			}, {}))
 
