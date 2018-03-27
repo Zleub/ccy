@@ -1,6 +1,7 @@
 # description
-Ce projet est composer de deux partie distinct: L'une est fonctionel et conecter aux platforme d'echange; l'autre permet de simuler, visualiser et qualibrer des strategie sur l'ensemble des donner collecter don celle en temps reel.
+Ce projet est composer de deux partie distinct: L'une est "fonctionel" et conecter aux platforme d'echange; l'autre permet de simuler, visualiser, qualibrer ou affiner des strategie sur l'ensemble des donner deja collecter.
 
+Dans les strategie envisgee, il y a les strategie "spatiale": On joue potentielement tout les ordre aux meme moment; on selection des cycle qui une fois parcourut on a plus d'argent a la fin. Theoriquement c'est fiable a 100%. Il y a aussi les strategie "temporel": la on fait un parie sur l'avenir donc rien ne peut etre sûr.
 
 
 
@@ -8,6 +9,7 @@ Ce projet est composer de deux partie distinct: L'une est fonctionel et conecter
 ## Math/algo:
   - [Using OpenCL for Implementing Simple  Parallel Graph Algorithms](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.218.1743&rep=rep1&type=pdf)
   - [Parallel Graph Algorithms](https://www8.cs.umu.se/kurser/5DV050/VT10/handouts/F10.pdf)
+  - [liste indicateur](http://www.waldata.fr/analysetechnique/bibliotheque/rsi.asp)
   - [distributions à queue épaisse](https://sciencetonnante.wordpress.com/2011/05/30/pourquoi-les-marches-financiers-fluctuent-ils-tous-de-la-meme-maniere/#more-1509)
   - [(MIT) Mathematics for Computer Science](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-042j-mathematics-for-computer-science-fall-2010/readings/MIT6_042JF10_notes.pdf)
   - [(MIT) Introduction to Networks](https://ocw.mit.edu/courses/sloan-school-of-management/15-053-optimization-methods-in-management-science-spring-2013/lecture-notes/MIT15_053S13_lec15.pdf)
@@ -75,7 +77,19 @@ Ce projet est composer de deux partie distinct: L'une est fonctionel et conecter
 ------
 
 ### Data des platforme
-Les information minimal sont: le cours, l'ordre de vente ou d'achat et la quatiter. Un nouvelle ordre, si la valeur de sont offre match avec un ordre opposer, reduit ces deux ordre de la quantitee du plus petit des deux. Ainsi pour chaque cours il y a des ordre de valeur differente a l'achat et a la vente simultanement. On peut aussi reconstruire les candelstick, un graph relationel de toute les devise, le cours moyen d'un couple de devise etc.
+
+Les information minimal sont: le couple de monnaie echangee, l'ordre de vente ou d'achat et la quatiter. Un nouvelle ordre, si la valeur de sont offre match avec un ordre opposer, reduit ces deux ordre de la quantitee du plus petit des deux. Un ordre existe tant qu'il n'a pas ete compensser.
+
+Pour les couple de monnaie sufisament populaire, il existe simultanement plusieurs ordre a l'achat et a la vente avec des quantite et des valeurs propres.
+
+Ce le cours d'echange d'un couple de deux monnaie est le prix du dernier echange qui a exister.
+
+On pourrait aussi considerer deux flux different: l'un ou les ordre de vente sont a l'attente et l'achat est actif et l'autre ou l'achat est a l'attente et la vente est active. L'eccart entre ces deux courbe correspond a la difference des volume entre les proposition/ordre passif et actif.
+
+On peut reconstruire tout les indicateur connue comme les candelstick. C'est un indicateur qui indique les valeurs limite min/max ainsi que les valeurs d'entrer et de sortie sur une resolution temporelle definie.
+
+
+, un graph relationel de toute les devise, le cours moyen d'un couple de devise etc.
   - event: {cours, ordre, quantite, time}
 
 

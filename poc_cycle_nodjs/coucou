@@ -1,0 +1,381 @@
+ID <=> NAME {0:BTC},  {1:ETH},  {2:BNB},  {3:USDT},  {4:AE},  {5:LTC},  {6:NEO},  {7:EOS},  {8:SNT},  {9:BNT},  {10:BCC},  {11:GAS},  {12:HSR},  {13:OAX},  {14:DNT},  {15:MCO},  {16:ICN},  {17:WTC},  {18:LRC},  {19:OMG},  {20:ZRX},  {21:BQX},  {22:KNC},  {23:FUN},  {24:SNM},  {25:XVG},  {26:CTR},  {27:MDA},  {28:MTL},  {29:SUB},  {30:ETC},  {31:MTH},  {32:ENG},  {33:ZEC},  {34:AST},  {35:BTG},  {36:EVX},  {37:REQ},  {38:VIB},  {39:TRX},  {40:ARK},  {41:XRP},  {42:MOD},  {43:ENJ},  {44:VEN},  {45:KMD},  {46:RCN},  {47:RDN},  {48:XMR},  {49:DLT},  {50:AMB},  {51:BAT},  {52:ARN},  {53:GVT},  {54:CDT},  {55:GXS},  {56:POE},  {57:QSP},  {58:BTS},  {59:XZC},  {60:LSK},  {61:TNT},  {62:BCD},  {63:DGD},  {64:ADX},  {65:ADA},  {66:PPT},  {67:CMT},  {68:XLM},  {69:CND},  {70:TNB},  {71:GTO},  {72:ICX},  {73:OST},  {74:ELF},  {75:BRD},  {76:EDO},  {77:NAV},  {78:LUN},  {79:RLC},  {80:INS},  {81:VIA},  {82:BLZ},  {83:RPX},  {84:POA},  {85:ZIL},  {86:ONT},  {87:QTUM},  {88:YOYO},  {89:IOTA},  {90:LINK},  {91:SALT},  {92:DASH},  {93:POWR},  {94:NULS},  {95:BCPT},  {96:FUEL},  {97:MANA},  {98:LEND},  {99:WABI},  {100:AION},  {101:NEBL},  {102:TRIG},  {103:APPC},  {104:VIBE},  {105:PIVX},  {106:IOST},  {107:CHAT},  {108:NANO},  {109:STRAT},  {110:SNGLS},  {111:STORJ},  {112:WAVES},  {113:WINGS},  {114:STEEM},  {115:NCASH},  {116:STORM},  
+
+
+
+CONNEXION:
+[0]      
+[1]      
+[2]      
+[3]      
+[4]      
+[5]      
+[6]      
+[7]      
+[8]      
+[9]      
+[10]      
+[12]      
+[13]      
+[14]      
+[15]      
+[16]      
+[17]      
+[18]      
+[19]      
+[20]      
+[21]      
+[22]      
+[23]      
+[24]      
+[25]      
+[26]      
+[27]      
+[28]      
+[29]      
+[30]      
+[31]      
+[32]      
+[33]      
+[34]      
+[35]      
+[36]      
+[37]      
+[38]      
+[39]      
+[40]      
+[41]      
+[42]      
+[43]      
+[44]      
+[45]      
+[46]      
+[47]      
+[48]      
+[49]      
+[50]      
+[51]      
+[52]      
+[53]      
+[54]      
+[55]      
+[56]      
+[57]      
+[58]      
+[59]      
+[60]      
+[61]      
+[62]      
+[63]      
+[64]      
+[65]      
+[66]      
+[67]      
+[68]      
+[69]      
+[70]      
+[71]      
+[72]      
+[73]      
+[74]      
+[75]      
+[76]      
+[77]      
+[78]      
+[79]      
+[80]      
+[81]      
+[82]      
+[83]      
+[84]      
+[85]      
+[86]      
+[87]      
+[88]      
+[89]      
+[90]      
+[91]      
+[92]      
+[93]      
+[94]      
+[95]      
+[96]      
+[97]      
+[98]      
+[99]      
+[100]      
+[101]      
+[102]      
+[103]      
+[104]      
+[105]      
+[106]      
+[107]      
+[108]      
+[109]      
+[110]      
+[111]      
+[112]      
+[113]      
+[114]      
+[115]      
+[116]      
+[undefined]      
+
+
+
+ALL MAT CONNEXTION
+=====================================
+link0->: [ undefined,
+  1,
+  undefined,
+  2,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  15,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  7,
+  8,
+  30,
+  undefined,
+  undefined,
+  14,
+  undefined,
+  9,
+  undefined,
+  13,
+  16,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  44,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  49,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  3,
+  87,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  94,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  ... 16 more items ]
+link1->: [ 4,
+  0,
+  undefined,
+  undefined,
+  undefined,
+  2,
+  undefined,
+  undefined,
+  undefined,
+  undefined,
+  17,
+  18,
+  19,
+  20,
+  21,
+  22,
+  23,
+  24,
+  6,
+  25,
+  26,
+  27,
+  28,
+  29,
+  undefined,
+  31,
+  32,
+  33,
+  34,
+  35,
+  36,
+  37,
+  38,
+  12,
+  39,
+  40,
+  41,
+  42,
+  43,
+  44,
+  45,
+  46,
+  47,
+  48,
+  49,
+  50,
+  10,
+  51,
+  52,
+  53,
+  54,
+  55,
+  56,
+  57,
+  58,
+  59,
+  60,
+  61,
+  62,
+  63,
+  64,
+  65,
+  66,
+  67,
+  68,
+  69,
+  5,
+  70,
+  71,
+  72,
+  73,
+  74,
+  75,
+  76,
+  77,
+  78,
+  79,
+  80,
+  81,
+  82,
+  83,
+  84,
+  85,
+  86,
+  undefined,
+  3,
+  89,
+  90,
+  91,
+  92,
+  93,
+  88,
+  94,
+  95,
+  96,
+  97,
+  98,
+  99,
+  100,
+  101,
+  ... 15 more items ]
+link2->: [ 4,
+  0,
+  1,
+  undefined,
+  46,
+  47,
+  undefined,
+  17,
+  50,
+  10,
+  51,
+  6,
+  57,
+  58,
+  59,
+  60,
+  64,
+  67,
+  68,
+  69,
+  5,
+  71,
+  72,
+  73,
+  75,
+  15,
+  77,
+  79,
+  81,
+  82,
+  83,
+  84,
+  85,
+  86,
+  3,
+  88,
+  93,
+  undefined,
+  95,
+  89,
+  99,
+  100,
+  101,
+  102,
+  103,
+  105,
+  108,
+  112,
+  114,
+  115,
+  116 ]
+link3->: [ 0, 1, 2, 10, 6, 5 ]
