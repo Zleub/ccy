@@ -6,7 +6,7 @@
 //   By: fjanoty <marvin@42.fr>                     +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/23 00:27:38 by fjanoty           #+#    #+#             //
-//   Updated: 2018/03/27 16:59:35 by fjanoty          ###   ########.fr       //
+//   Updated: 2018/03/27 18:14:21 by fjanoty          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -17,6 +17,7 @@ binance.options({
 });
 
 
+var tax = 0.9985;
 var	crypto_nb = 0;
 var	name_to_id = [];
 var id_to_name = [];
@@ -159,8 +160,8 @@ function	make_bid_ask_matrix_lstlink(ticker, lst_link)
 			continue ;
 		id1 = name_to_id[name.ref];
 		id2 = name_to_id[name.target];
-		mat_bid_ask[id1][id2] = ticker[id].askPrice;			// C -> P: ask 
-		mat_bid_ask[id2][id1] = 1.0 / ticker[id].bidPrice;    	// P -> C: bid
+		mat_bid_ask[id1][id2] = ticker[id].askPrice * tax;			// C -> P: ask 
+		mat_bid_ask[id2][id1] = 1.0 / (ticker[id].bidPrice) * tax;    	// P -> C: bid
 //		console.log("===> ", ticker[id]);
 	}
 }
@@ -442,7 +443,7 @@ function	strategie_cycle(ticker)
 //	console.log(lst_equivalent[1][2]);
 	best_equi = find_best_equivqlent(lst_equivalent, mat_bid_ask);		//	RETURN: best_equivalent
 //	console.log(best_equi);
-	mat_best_price = get_mat_best_price_equi(best_equi, mat_bid_ask);
+	mat_best_price = get_mat_best_price_equi(best_equi, mat_bid_ask);	// RETURN:  price of best equivalent
 	cycles = get_hard_cycle4();
 	best_cycle = compare_cycle(mat_best_price, cycles);
 //	console.log("best cycle:", best_cycle, "	the cycle-->", cycles[best_cycle]);
