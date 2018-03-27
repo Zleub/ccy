@@ -6,6 +6,10 @@ Dans les strategie envisgee, il y a les strategie "spatiale": On joue potentiele
 
 
 # Resource
+
+## marcher:
+  - [taux des tax](https://steemit.com/cryptocurrency/@davidhay/top-7-reasons-to-buy-and-hold-binance-bnb-coins)
+
 ## Math/algo:
   - [Using OpenCL for Implementing Simple  Parallel Graph Algorithms](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.218.1743&rep=rep1&type=pdf)
   - [Parallel Graph Algorithms](https://www8.cs.umu.se/kurser/5DV050/VT10/handouts/F10.pdf)

@@ -6,7 +6,7 @@
 //   By: fjanoty <marvin@42.fr>                     +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/23 00:27:38 by fjanoty           #+#    #+#             //
-//   Updated: 2018/03/27 18:14:21 by fjanoty          ###   ########.fr       //
+//   Updated: 2018/03/27 20:50:20 by fjanoty          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -18,6 +18,7 @@ binance.options({
 
 
 var tax = 0.9985;
+var tax_bnb = 0.9995;
 var	crypto_nb = 0;
 var	name_to_id = [];
 var id_to_name = [];
@@ -160,8 +161,8 @@ function	make_bid_ask_matrix_lstlink(ticker, lst_link)
 			continue ;
 		id1 = name_to_id[name.ref];
 		id2 = name_to_id[name.target];
-		mat_bid_ask[id1][id2] = ticker[id].askPrice * tax;			// C -> P: ask 
-		mat_bid_ask[id2][id1] = 1.0 / (ticker[id].bidPrice) * tax;    	// P -> C: bid
+		mat_bid_ask[id1][id2] = ticker[id].askPrice * ((id1 == 3) ? tax_bnb : tax);			// C -> P: ask 
+		mat_bid_ask[id2][id1] = 1.0 / (ticker[id].bidPrice) * ((id1 == 3) ? tax_bnb : tax);    	// P -> C: bid
 //		console.log("===> ", ticker[id]);
 	}
 }
