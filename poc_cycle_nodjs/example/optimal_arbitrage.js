@@ -6,7 +6,7 @@
 //   By: fjanoty <marvin@42.fr>                     +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/23 00:27:38 by fjanoty           #+#    #+#             //
-//   Updated: 2018/03/28 09:20:29 by fjanoty          ###   ########.fr       //
+//   Updated: 2018/03/28 09:24:10 by fjanoty          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -387,8 +387,8 @@ function	print_result_cycle(path, mat_price, mat_inter, mat_vol, mat_price2)
 		names += ("(" + id_to_name[lst_id[i]] + ")  =>") ;
 	}
 	volume_min = def_qty_avaliable(lst_id, mat_price2, mat_vol);
-	benef = volume_min * sum;
-	console.log(names, sum, "	benefice:", benef);
+	benef = volume_min * (sum - 1.0);
+	console.log(names, sum, "	volume:", volume_min, "	 ==> benefice:", benef, id_to_name[lst_id[0]]);
 }
 
 function	compare_cycle(mat_price, cycles)
