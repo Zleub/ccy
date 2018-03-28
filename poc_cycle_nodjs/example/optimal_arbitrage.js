@@ -6,7 +6,7 @@
 //   By: fjanoty <marvin@42.fr>                     +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/23 00:27:38 by fjanoty           #+#    #+#             //
-//   Updated: 2018/03/27 20:50:20 by fjanoty          ###   ########.fr       //
+//   Updated: 2018/03/28 09:20:29 by fjanoty          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -30,6 +30,7 @@ var	lst_link_name = [];
 
 var	mat_connexion = [];
 var	mat_bid_ask = [];
+var	mat_volume = [];
 
 var	lst_equivalent = [];
 var lst_cycle = [];
@@ -118,16 +119,18 @@ function	forge_the_names_and_links(bid_ask)
 
 
 //	On va remplir d 0 la matrice de connexion et sont equivalent pour les valeur d'echange (bid,ask)
-function	matrix_init_connecion_bidask()
+function	matrix_init_connecion_bidask_volume()
 {
 	for (j = 0; j < crypto_nb; j++)
 	{
 		mat_connexion[j] = [];
 		mat_bid_ask[j] = [];
+		mat_volume[j] = [];
 		for (i = 0; i < crypto_nb; i++)
 		{
 			mat_connexion[j][i] = 0;
 			mat_bid_ask[j][i] = 0;
+			mat_volume[j][i] = 0;
 		}
 	}
 }
@@ -137,13 +140,13 @@ function	matrix_init_connecion_bidask()
 //	On va initialiser mat_connexion et mat_bid_ask a 0
 //	- on va mettre des 1 pour chaque connexion 																				-> dans mat_connexion
 //	- on va metre le ratio de convertion d'une monnaie a l'autre (donc le bid avec C->P,  (1.0 / ask) avec P->C)			-> dans mat_bid_ask
-function	make_bid_ask_matrix_lstlink(ticker, lst_link)
+function	make_bid_ask_matrix_lstlink_volume(ticker, lst_link)
 {
 	let id1, id2;
 	var	name = {from:"", to:""};	
 	var id = {from:-1, to:-1};
 
-	matrix_init_connecion_bidask();	// on initialise les tableau sur lequel on va travailer
+	matrix_init_connecion_bidask_volume();	// on initialise les tableau sur lequel on va travailer
 	//	on enregister toute es connexion par un un aux croisement de la colone i et la ligne j
 	//	Ca permet d'estimet le nombre de conexiion qui existe entre deux neoeud quand on calcule une puissance de cette matrice
 	for (id in lst_link) // On remplis la matrice adjacente
@@ -153,7 +156,7 @@ function	make_bid_ask_matrix_lstlink(ticker, lst_link)
 		mat_connexion[id1][id2] = 1;	
 		mat_connexion[id2][id1] = 1;	
 	}
-	//	On fait la meme chose mais cette fois on enregistre la valeur de l'echange
+	//	On fait la meme chose mais cette fois on enregistre la valeur de l'echange et le volume, on pourrait mettre toute les valeur dans un tableua d;objet mais... fleme de tout changer
 	for (id in ticker) // la on fait la meme chose sauf qu'on va iterer sur les nom des monnaie
 	{
 		name = get_crypto_name(ticker[id].symbol);	// name.ref => monaie [C]entral  && name.target => monaie [P]eriferique
@@ -163,6 +166,8 @@ function	make_bid_ask_matrix_lstlink(ticker, lst_link)
 		id2 = name_to_id[name.target];
 		mat_bid_ask[id1][id2] = ticker[id].askPrice * ((id1 == 3) ? tax_bnb : tax);			// C -> P: ask 
 		mat_bid_ask[id2][id1] = 1.0 / (ticker[id].bidPrice) * ((id1 == 3) ? tax_bnb : tax);    	// P -> C: bid
+		mat_volume[id1][id2] =  ticker[id].askQty;// volume of ask
+        mat_volume[id2][id1] = 	ticker[id].bidQty;// volume of bid
 //		console.log("===> ", ticker[id]);
 	}
 }
@@ -247,7 +252,7 @@ function	find_best_equivqlent(lst_equi, mat_price)
 			if (i == j)
 				continue ;
 			// --> la on va chercher pour toute les monnaie celle qui sont conecter a [i] et a [j]
-			best_price = 0;
+			best_price = mat_price[j][i];
 			best_id = undefined;
 			
 			for (k in lst_equi[j][i]) // on ne cherche pas dans les parent, on pourrais mais non
@@ -283,7 +288,7 @@ function	get_mat_best_price_equi(best_equi, mat_price)
 			best_price[j][i] = 0;
 			if (i == j)
 				continue ;
-			path = [j, best_equi[j][i], i];
+			path = (best_equi[j][i] !== undefined) ? [j, best_equi[j][i], i] : [j, i];
 //			console.log("best_equi[", j, "][", i, "]:", best_equi[j][i]);
 			best_price[j][i] = eval_path(path, mat_price);
 		}
@@ -306,14 +311,60 @@ function	get_hard_cycle4()
 	return (cycles);
 }
 
-function	print_result_cycle(path, mat_price, mat_inter)
+//	il faut donner le path reel des monaie pas celui aproximer
+//	     ... un peu plus chian de choper le max
+function	def_qty_avaliable(path, mat_price, mat_vol)
+{
+	let	volume_min, vol_prev, vol_eq, tmp, coef_correct, id1, id2, i, len, id_min;
+
+//	console.log("											====> path:", path);
+
+	id1 = path[0];
+	id2 = path[1];
+	volume_min = mat_vol[id1][id2];
+//	console.log("vol_min[0]:", volume_min);
+	vol_prev = volume_min;
+	len = path.length - 1;
+	coef_correct = 1;
+	id_min = id1;
+	for (i = 1; i < len; i++)
+	{
+//		console.log("vol_min[", i, "]:", volume_min);
+		id1 = path[i];
+		id2 = path[i + 1];
+//		console.log("id1:", id1, "	id2:", id2, "	vol_prev:", vol_prev);
+		if(vol_prev == undefined)
+		{
+			return (0);
+		}
+		vol_eq = mat_price[id1][id2] * vol_prev;
+		tmp = vol_eq / mat_vol[id1][id2];
+		if (tmp < 1)
+		{
+			coef_correct *= tmp;
+			vol_eq *= tmp;
+			volume_min *= tmp;
+			id_min = id1;
+		}
+		vol_prev = vol_eq;
+	}
+//	console.log("qtyMin(", id_to_name[path[0]], "):", volume_min, "		{id, coef}_min:", "{", id_min, ", ", coef_correct, "}");
+	return (volume_min);
+	// on prend le volume du premier echange
+	// on le compare au volume dans la monnaie suivante et si il y a une reduction de volume on quantifie comben
+	// on fait toute les chaine
+	// on reporte le coef de correction --> on a un equivalent du volume 
+}
+
+function	print_result_cycle(path, mat_price, mat_inter, mat_vol, mat_price2)
 {
 	// le nom des monnaie, le nom de intermediaire, 
 	//	BTH  => (RPX) =>  ETH 
-	let names, lst_id, i, len, id, sum, id_1, id_2;
+	let names, lst_id, i, len, id, sum, id_1, id_2, benef, vol_min;
 
 	// on construit la liste des index des monnai par lesquell on passe reelement
 	// on fait aussi la somme du parcourt
+//	console.log("											====> path:", path);
 	names = "";
 	lst_id = [];
 	len = path.length - 1;
@@ -324,18 +375,20 @@ function	print_result_cycle(path, mat_price, mat_inter)
 		id_1 = path[i];
 		id_2 = path[i + 1];
 		lst_id[id++] = id_1;
-		lst_id[id++] = mat_inter[id_1][id_2];
+		lst_id[id++] = parseInt(mat_inter[id_1][id_2]);
 		sum *= mat_price[id_1][id_2]; // la on calcule le truc avec le prix qui q deja ete concatener normalement
 //		console.log("mat[", id_1, "][", id_2,"]:", mat_price[id_1][id_2], "		lst_id[", id, "]:", lst_id[id]);
 	}
-	lst_id[id] = path[i]; // le dernier element(c'est aussi senssr etre le dernier id_2) ... ou pas
+	lst_id[id] = parseInt(path[i]); // le dernier element(c'est aussi senssr etre le dernier id_2) ... ou pas
 
 	// on construit une chaine de charactere avec tout leur nom
 	for (i in lst_id)
 	{
 		names += ("(" + id_to_name[lst_id[i]] + ")  =>") ;
 	}
-	console.log(names, sum);
+	volume_min = def_qty_avaliable(lst_id, mat_price2, mat_vol);
+	benef = volume_min * sum;
+	console.log(names, sum, "	benefice:", benef);
 }
 
 function	compare_cycle(mat_price, cycles)
@@ -374,6 +427,13 @@ function	print_mat_connexion_bid_ask()
 			str += (" |" + mat_bid_ask[j][i] + "|").padStart(3);     //
 		console.log("      ", str);                                  //
 	}                                                                //
+	for (j in mat_volume)                                            //
+	{                                                                //
+		str = "";                                                    //
+		for (i in mat_volume[j])                                    //
+			str += (" |" + mat_volume[j][i] + "|").padStart(3);     //
+		console.log("      ", str);                                  //
+	}
 /////////////////////////////////////////////////////////////////////
 }
 
@@ -425,7 +485,7 @@ function	do_all_the_taf(bid_ask)
 	
 	init_name();
 	forge_the_names_and_links(bid_ask);
-	make_bid_ask_matrix_lstlink(bid_ask);
+	make_bid_ask_matrix_lstlink_volume(bid_ask);
 	print_statment();
 //		console.log(bid_ask[id].symbol);
 }
@@ -438,7 +498,7 @@ function	strategie_cycle(ticker)
 
 	init_name();
 	forge_the_names_and_links(ticker);									// 	id_to_name, name_to_id, lst_link_id, lst_link_name
-	make_bid_ask_matrix_lstlink(ticker, lst_link_id); 					//	mat_connexion, mat_bid_ask
+	make_bid_ask_matrix_lstlink_volume(ticker, lst_link_id); 					//	mat_connexion, mat_bid_ask
 //	print_mat_connexion_bid_ask();
 	make_equivalent_path(mat_connexion);								//	lst_equivalent
 //	console.log(lst_equivalent[1][2]);
@@ -450,12 +510,13 @@ function	strategie_cycle(ticker)
 //	console.log("best cycle:", best_cycle, "	the cycle-->", cycles[best_cycle]);
 //	console.log(mat_best_price);
 //	console.log(best_equi)
-	print_result_cycle(cycles[best_cycle], mat_best_price, best_equi);
+	print_result_cycle(cycles[best_cycle], mat_best_price, best_equi, mat_volume, mat_bid_ask);
 }
 
 
 binance.bookTickers((error, ticker) => {
 	strategie_cycle(ticker);
+//	console.log(ticker);
 //	  console.log("bookTickers()", ticker);
 //	do_all_the_taf(ticker);
 });
