@@ -26,13 +26,13 @@ Placing a MARKET order
 //
 
 
-function	print_symbole_name(ticker)
+function	print_symbole_name(tick)
 {
 	let	i, str = "";
 
-	for (i in ticker)
+	for (i in tick)
 	{
-		str = "\"" + ticker[i].symbol + "\"";
+		str = "\"" + tick[i].symbol + "\"";
 		console.log(str);
 	}
 }
@@ -89,7 +89,7 @@ var	one_symbol = ["ETHBTC"];
 
 var	symbol_to_id = [];
 var	id_to_symbole = [];
-var	ticker = [];
+var	tickers = [];
 
 function	init_symbole(all_symb)
 {
@@ -129,8 +129,8 @@ function	describe_depth(symbol, depth)
 	ret_val.symbol = symbol;
 	ret_val.askPrice = parseFloat(id_ab);
 	ret_val.bidPrice = parseFloat(id_bb);
-	ret_val.askQty = depth["asks"][id_ab];
-	ret_val.bidQty = depth["bids"][id_bb];
+	ret_val.askQty = ParseFloat(depth["asks"][id_ab]);
+	ret_val.bidQty = ParseFloat(depth["bids"][id_bb]);
 	ret_val.id_tab = symbol_to_id[symbol];
 	return (ret_val);
 }
@@ -140,10 +140,9 @@ init_symbole();
 binance.websockets.depthCache(all_symbol, (symbol, depth) => {
 	let ret;
 	ret = describe_depth(symbol, depth);
-//	console.log("=========================");
-//	console.log(ret);
-	ticker[ret.id_tab] = ret;
-
+	console.log("=========================");
+	console.log(ret);
+	tickers[ret.id_tab] = ret;
 });
 
 

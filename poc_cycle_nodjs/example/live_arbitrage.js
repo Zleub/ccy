@@ -6,7 +6,7 @@
 //   By: fjanoty <marvin@42.fr>                     +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/23 00:27:38 by fjanoty           #+#    #+#             //
-//   Updated: 2018/03/30 07:05:15 by fjanoty          ###   ########.fr       //
+//   Updated: 2018/03/30 04:53:03 by fjanoty          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -46,8 +46,8 @@ var	id_to_symbole = [];
 var	tickers = [];
 
 ///////////////////////////////////////////////////////////////////////
-var tax = 0.999; // (1,00 - ,001)
-var tax_bnb = 0.999;
+var tax = 0.9985;
+var tax_bnb = 0.9995;
 var	crypto_nb = 0;
 var	name_to_id = [];
 var id_to_name = [];
@@ -194,10 +194,10 @@ function	make_bid_ask_matrix_lstlink_volume(ticker, lst_link)
 			continue ;
 		id1 = name_to_id[name.ref];
 		id2 = name_to_id[name.target];
-		mat_bid_ask[id1][id2] = ticker[id].bidPrice * ((id1 == 3) ? tax_bnb : tax);			// C -> P: ask 
-		mat_bid_ask[id2][id1] = 1.0 / (ticker[id].askPrice) * ((id1 == 3) ? tax_bnb : tax);    	// P -> C: bid
-		mat_volume[id1][id2] =  ticker[id].bidQty;// volume of ask
-        mat_volume[id2][id1] = 	ticker[id].askQty;// volume of bid
+		mat_bid_ask[id1][id2] = ticker[id].askPrice * ((id1 == 3) ? tax_bnb : tax);			// C -> P: ask 
+		mat_bid_ask[id2][id1] = 1.0 / (ticker[id].bidPrice) * ((id1 == 3) ? tax_bnb : tax);    	// P -> C: bid
+		mat_volume[id1][id2] =  ticker[id].askQty;// volume of ask
+        mat_volume[id2][id1] = 	ticker[id].bidQty;// volume of bid
 //		console.log("===> ", ticker[id]);
 	}
 }
@@ -242,8 +242,6 @@ function	eval_path(path, mat)
 {
 	let	i, len, sum;
 
-//		console.log("path===>", path);
-		path = path.filter(p => p != undefined);
 	sum = 1;
 	len = path.length - 1;
 	if (path === undefined)
@@ -258,6 +256,7 @@ function	eval_path(path, mat)
 			console.error("				eval_path[", i, "]:	is undefined");
 			return (0);
 		}
+//		console.log("path===>", path);
 		sum *= mat[path[i]][path[i + 1]];
 	}
 	return (sum);
@@ -283,17 +282,17 @@ function	find_best_equivqlent(lst_equi, mat_price)
 			if (i == j)
 				continue ;
 			// --> la on va chercher pour toute les monnaie celle qui sont conecter a [i] et a [j]
-			best_price = -1;
-			best_id = undefined;//-1337.42;
+			best_price = mat_price[j][i];
+			best_id = undefined;
 			
-		//	console.log("***    lst_equi[", j, "][", i, "]:", lst_equi[j][i], "lst_equi[j].len:", lst_equi[j].length, "lst_equi[j][i].len:", lst_equi[j][i].length, "    ***");
+			console.log("***    lst_equi[", j, "][", i, "]:", lst_equi[j][i], "lst_equi[j].len:", lst_equi[j].length, "lst_equi[j][i].len:", lst_equi[j][i].length, "    ***");
 			for (k in lst_equi[j][i]) // on ne cherche pas dans les parent, on pourrais mais non
 			{
 			//	console.log("====================:");
 				path = [j, lst_equi[j][i][k], i];
 				tmp_val = eval_path(path, mat_price);
 //				console.log("path evaluated:", path, "		tmp_val:", tmp_val);
-				//console.log("																																tmp_val:", tmp_val, "	best_price:", best_price);
+				console.log("																																tmp_val:", tmp_val, "	best_price:", best_price);
 				if (tmp_val > best_price)
 				{
 					best_price = tmp_val;
@@ -301,7 +300,7 @@ function	find_best_equivqlent(lst_equi, mat_price)
 				}
 			}
 //, "		mat_inter[", id_1, "][", id_2, "]:", mat_inter[id_1][id_2]
-		//	console.log("best_equivalent[", j, "][", i, "]:", best_equivalent[j][i], "		best_id:", best_id);
+			console.log("best_equivalent[", j, "][", i, "]:", best_equivalent[j][i], "		best_id:", best_id);
 			best_equivalent[j][i] = best_id;
 		}
 	}
@@ -363,24 +362,18 @@ function	def_qty_avaliable(path, mat_price, mat_vol)
 	len = path.length - 1;
 	coef_correct = 1;
 	id_min = id1;
-	const path_cpy = path.filter(elem => elem != undefined);
-//	console.log(path_cpy);
 	for (i = 1; i < len; i++)
 	{
 //		console.log("vol_min[", i, "]:", volume_min);
-		id1 = path_cpy[i];
-		id2 = path_cpy[i + 1];
+		id1 = path[i];
+		id2 = path[i + 1];
 //		console.log("id1:", id1, "	id2:", id2, "	vol_prev:", vol_prev);
 		if(vol_prev == undefined || id1 === undefined || id2 === undefined)
 		{
-	//		continue ;
 			return (0);
 		}
 		if (typeof(mat_price[id1]) != typeof([]))
-		{
-			continue ;
 			return (0);
-		}
 		vol_eq = mat_price[id1][id2] * vol_prev;
 		tmp = vol_eq / mat_vol[id1][id2];
 		if (tmp < 1)
@@ -414,27 +407,23 @@ function	print_result_cycle(path, mat_price, mat_inter, mat_vol, mat_price2)
 	len = path.length - 1;
 	id = 0;
 	sum = 1;
-//console.log("------");
+console.log("------");
 	for (i = 0; i < len; i++)
 	{
 		id_1 = path[i];
 		id_2 = path[i + 1];
 		lst_id[id++] = id_1;
-//console.log("a:", lst_id[id - 1]);
 		lst_id[id++] = parseInt(mat_inter[id_1][id_2]);
-//		console.log("mat_inter[", id_1, "][", id_2, "]", mat_inter[id_1][id_2]);
-//console.log("b:", lst_id[id - 1]);
-//		console.log("path[", (i - 1), "]:", path[i - 1],"path[", (i - 0), "]:", path[i - 0], "id_1:", id_1, "	id_2", id_2, "	lst_id[", (id - 2), "]:", lst_id[id - 2], "	lst_id[", (id - 1), "]:", lst_id[id - 1], "		mat_inter[", id_1, "][", id_2, "]:", mat_inter[id_1][id_2], "		mat_price[", id_1, "][", id_2, "]:", mat_price[id_1][id_2]);
+		console.log("path[", (i - 1), "]:", path[i - 1],"path[", (i - 0), "]:", path[i - 0], "id_1:", id_1, "	id_2", id_2, "	lst_id[", (id - 2), "]:", lst_id[id - 2], "	lst_id[", (id - 1), "]:", lst_id[id - 1], "		mat_inter[", id_1, "][", id_2, "]:", mat_inter[id_1][id_2], "		mat_price[", id_1, "][", id_2, "]:", mat_price[id_1][id_2]);
 		sum *= mat_price[id_1][id_2]; // la on calcule le truc avec le prix qui q deja ete concatener normalement
 //		console.log("mat[", id_1, "][", id_2,"]:", mat_price[id_1][id_2], "		lst_id[", id, "]:", lst_id[id]);
 	}
 	lst_id[id] = parseInt(path[i]); // le dernier element(c'est aussi senssr etre le dernier id_2) ... ou pas
-//	console.log(lst_id[id]);
 
 	// on construit une chaine de charactere avec tout leur nom
 	for (i in lst_id)
 	{
-//		console.log("lst_id[", i, "]:", lst_id[i]);
+		console.log("lst_id[", i, "]:", lst_id[i]);
 		names += ("(" + id_to_name[lst_id[i]] + ")  =>") ;
 	}
 	volume_min = def_qty_avaliable(lst_id, mat_price2, mat_vol);
