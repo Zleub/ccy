@@ -6,7 +6,7 @@
 //   By: fjanoty <marvin@42.fr>                     +#+  +:+       +#+        //
 //                                                +#+#+#+#+#+   +#+           //
 //   Created: 2018/03/23 00:27:38 by fjanoty           #+#    #+#             //
-//   Updated: 2018/03/30 07:52:45 by fjanoty          ###   ########.fr       //
+//   Updated: 2018/03/30 08:34:37 by fjanoty          ###   ########.fr       //
 //                                                                            //
 // ************************************************************************** //
 
@@ -122,7 +122,7 @@ function	forge_the_names_and_links(bid_ask)
 	var name = {};
 	for (id in bid_ask)
 	{
-		name = get_crypto_name(bid_ask[id].symbol);
+		name = get_crypto_name(id);
 //		console.log("name:", name);
 		if (name == undefined)
 		{
@@ -189,15 +189,15 @@ function	make_bid_ask_matrix_lstlink_volume(ticker, lst_link)
 	//	On fait la meme chose mais cette fois on enregistre la valeur de l'echange et le volume, on pourrait mettre toute les valeur dans un tableua d;objet mais... fleme de tout changer
 	for (id in ticker) // la on fait la meme chose sauf qu'on va iterer sur les nom des monnaie
 	{
-		name = get_crypto_name(ticker[id].symbol);	// name.ref => monaie [C]entral  && name.target => monaie [P]eriferique
+		name = get_crypto_name(id);	// name.ref => monaie [C]entral  && name.target => monaie [P]eriferique
 		if (name == undefined)
 			continue ;
 		id1 = name_to_id[name.ref];
 		id2 = name_to_id[name.target];
-		mat_bid_ask[id1][id2] = ticker[id].bidPrice * ((id1 == 3) ? tax_bnb : tax);			// C -> P: ask 
-		mat_bid_ask[id2][id1] = 1.0 / (ticker[id].askPrice) * ((id1 == 3) ? tax_bnb : tax);    	// P -> C: bid
-		mat_volume[id1][id2] =  ticker[id].bidQty;// volume of ask
-        mat_volume[id2][id1] = 	ticker[id].askQty;// volume of bid
+		mat_bid_ask[id1][id2] = ticker[id] * ((id1 == 3) ? tax_bnb : tax);			// C -> P: ask 
+		mat_bid_ask[id2][id1] = 1.0 / (ticker[id]) * ((id1 == 3) ? tax_bnb : tax);    	// P -> C: bid
+		mat_volume[id1][id2] =  000;// volume of ask
+        mat_volume[id2][id1] = 	000;// volume of bid
 //		console.log("===> ", ticker[id]);
 	}
 }
@@ -283,7 +283,7 @@ function	find_best_equivqlent(lst_equi, mat_price)
 			if (i == j)
 				continue ;
 			// --> la on va chercher pour toute les monnaie celle qui sont conecter a [i] et a [j]
-			best_price = 0;//mat_price[j][i];
+			best_price = mat_price[j][i];
 			best_id = undefined;//-1337.42;
 			
 		//	console.log("***    lst_equi[", j, "][", i, "]:", lst_equi[j][i], "lst_equi[j].len:", lst_equi[j].length, "lst_equi[j][i].len:", lst_equi[j][i].length, "    ***");
@@ -434,6 +434,8 @@ function	print_result_cycle(path, mat_price, mat_inter, mat_vol, mat_price2)
 	// on construit une chaine de charactere avec tout leur nom
 	for (i in lst_id)
 	{
+		if (id_to_name[lst_id[i]] === undefined)
+			continue ;
 //		console.log("lst_id[", i, "]:", lst_id[i]);
 		names += ("(" + id_to_name[lst_id[i]] + ")  =>") ;
 	}
@@ -640,11 +642,15 @@ function	describe_depth(symbol, depth)
 //*/
 
 //*
+function	truc(){
 
-binance.prices((error, ticker) => {
-	strategie_cycle();
-	  console.log("prices()", ticker);
-});
+		binance.prices((error, ticker) => {
+			strategie_cycle(ticker);
+		//  console.log("prices()", ticker);
+		});
+
+}
+truc();
 //*/
 
 
