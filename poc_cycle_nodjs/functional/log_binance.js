@@ -46,14 +46,22 @@ function	db_init(lst_name)
 	mongo_db_name = "binance_storage";
 	mongo_db_port = "27017"
 	mongo_db_url = "mongodb://localhost:" + mongo_db_port + "/" + mongo_db_name;
+
+	MongoClient.connect(mongo_db_url, function(err, db) {
+			if (err) throw err;
+			var dbo = db.db(mongo_db_name);
+	//		dbo.dropDatabase();
+
+		});
+
 //	var	str_log = "";
 
 	// on cree la DB: binance_storage
-//	MongoClient.connect(mongo_db_url, function(err, db) {
-//		if (err) throw err;
-//		console.log("Database: ", mongo_db_name, " created!");
-//			db.close();
-//	});
+	MongoClient.connect(mongo_db_url, function(err, db) {
+		if (err) throw err;
+		console.log("Database: ", mongo_db_name, " created!");
+			db.close();
+	});
 		MongoClient.connect(mongo_db_url, function(err, db) {
 			if (err) throw err;
 			var dbo = db.db(mongo_db_name);
@@ -62,10 +70,10 @@ function	db_init(lst_name)
 			{
 				dbo.createCollection(lst_name[i], function (){
 					if (err) throw err;
-					db.close()});
+				});
 				console.log("collection[", i, "]:", lst_name[i]);
 			}
-	
+			db.close();
 		});
 
 //	console.log(str_log);
@@ -84,40 +92,61 @@ function	get_frame(all_market)
 //	});
 //	
 
+
+
+
+
 	// on etablie les websockette et on regardesi on peu faire des truc apres
 	binance.websockets.trades(all_market, (trades) => {
+
 		MongoClient.connect(mongo_db_url, function(err, db) {
 			if (err) throw err;
 			var dbo = db.db(mongo_db_name);
-			dbo.collection(trades.s).insertOne(trades, function(err, res) {if (err) throw err;db.close();});
-		});
 		
+			dbo.collection(trades.s).insertOne(trades, function(err, res) {
+				if (err) throw err;
+				db.close();
+			});
+		});
 
-
-
+//		MongoClient.connect(mongo_db_url, function(err, db) {
+//			if (err) throw err;
+//			var dbo = db.db(mongo_db_name);
+//			dbo.collection(trades.s).insertOne(trades, function(err, res) {if (err) throw err;db.close();});
+//		});
 	});
+
+
 	//
 	binance.websockets.miniTicker(markets => {
-		for (i in markets)
-		{
 			MongoClient.connect(mongo_db_url, function(err, db) {
 				if (err) throw err;
 				var dbo = db.db(mongo_db_name);
-				dbo.collection(i).insertOne(markets[i], function(err, res) {if (err) throw err;db.close();});
+						
+				for (i in markets)
+				{
+					dbo.collection(i).insertOne(markets[i], function(err, res) {
+						if (err) throw err;
+					});
+				}
+				db.close();
 			});
-		}
-			console.log(markets);
+		//	console.log(markets);
 	});
+
+
+	//	on essera de le faire avec update cahe
 	//
 	binance.websockets.depth(all_market, (depth) => {
 		MongoClient.connect(mongo_db_url, function(err, db) {
 			if (err) throw err;
 			var dbo = db.db(mongo_db_name);
-			dbo.collection(depth.s).insertOne(depth, function(err, res) {if (err) throw err;db.close();});
+		
+			dbo.collection(depth.s).insertOne(depth, function(err, res) {
+				if (err) throw err;
+				db.close();
+			});
 		});
-	//		let {e:eventType, E:eventTime, s:symbol, u:updateId, b:bidDepth, a:askDepth} = depth;
-	//			console.log(symbol+" market depth update");
-	//			console.log(bidDepth, askDepth);
 	});
 }
 
