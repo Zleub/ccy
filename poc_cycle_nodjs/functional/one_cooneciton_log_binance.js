@@ -9,6 +9,7 @@ var	mongo_db;
 var MongoClient;
 var mongo_db_url;
 var mongo_db_port;
+var	dbo;
 
 // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 //	get liste of echange symbole
@@ -20,6 +21,7 @@ function	get_all_symbole_exchange()
 	binance.prices((error, ticker) => {
 		id = 0;
 		lst_name_exchange = [];
+		var	dbo;
 		for (i in ticker)
 		{
 			lst_name_exchange[id] = i;
@@ -49,7 +51,7 @@ function	db_init(lst_name)
 
 	MongoClient.connect(mongo_db_url, function(err, db) {
 			if (err) throw err;
-			var dbo = db.db(mongo_db_name);
+			dbo = db.db(mongo_db_name);
 	//		dbo.dropDatabase();
 			db.close();
 
@@ -65,13 +67,12 @@ function	db_init(lst_name)
 	});
 		MongoClient.connect(mongo_db_url, function(err, db) {
 			if (err) throw err;
-			var dbo = db.db(mongo_db_name);
+//			dbo = db.db(mongo_db_name);
 			
 			for (i in lst_name)
 			{
 				dbo.createCollection(lst_name[i], function (){
 					if (err) throw err;
-					dbo = db.db(mongo_db_name);
 				});
 				console.log("collection[", i, "]:", lst_name[i]);
 			}
@@ -86,7 +87,7 @@ function	get_frame(all_market)
 {
 //	MongoClient.connect(mongo_db_url, function(err, db) {
 //		if (err) throw err;
-//		var dbo = db.db(mongo_db_name);
+//		dbo = db.db(mongo_db_name);
 //
 //		var myobj = { name: "Company Inc", address: "Highway 37" };	// mes baill
 //
@@ -103,7 +104,7 @@ function	get_frame(all_market)
 
 		MongoClient.connect(mongo_db_url, function(err, db) {
 			if (err) throw err;
-			var dbo = db.db(mongo_db_name);
+		//	dbo = db.db(mongo_db_name);
 		
 			dbo.collection(trades.s).insertOne(trades, function(err, res) {
 				if (err) throw err;
@@ -113,7 +114,7 @@ function	get_frame(all_market)
 
 //		MongoClient.connect(mongo_db_url, function(err, db) {
 //			if (err) throw err;
-//			var dbo = db.db(mongo_db_name);
+//			dbo = db.db(mongo_db_name);
 //			dbo.collection(trades.s).insertOne(trades, function(err, res) {if (err) throw err;db.close();});
 //		});
 	});
@@ -123,12 +124,13 @@ function	get_frame(all_market)
 	binance.websockets.miniTicker(markets => {
 			MongoClient.connect(mongo_db_url, function(err, db) {
 				if (err) throw err;
-				var dbo = db.db(mongo_db_name);
+		//		dbo = db.db(mongo_db_name);
 						
 				for (i in markets)
 				{
 					dbo.collection(i).insertOne(markets[i], function(err, res) {
 						if (err) throw err;
+						db.close();
 					});
 				}
 				db.close();
@@ -142,7 +144,7 @@ function	get_frame(all_market)
 	binance.websockets.depth(all_market, (depth) => {
 		MongoClient.connect(mongo_db_url, function(err, db) {
 			if (err) throw err;
-			var dbo = db.db(mongo_db_name);
+		//	dbo = db.db(mongo_db_name);
 		
 			dbo.collection(depth.s).insertOne(depth, function(err, res) {
 				if (err) throw err;
