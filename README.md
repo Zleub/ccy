@@ -11,6 +11,7 @@ Dans les strategie envisgee, il y a les strategie "spatiale": On joue potentiele
   - [taux des tax](https://steemit.com/cryptocurrency/@davidhay/top-7-reasons-to-buy-and-hold-binance-bnb-coins)
 
 ## Math/algo:
+#### en vrac
   - [Using OpenCL for Implementing Simple  Parallel Graph Algorithms](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.218.1743&rep=rep1&type=pdf)
   - [Parallel Graph Algorithms](https://www8.cs.umu.se/kurser/5DV050/VT10/handouts/F10.pdf)
   - [liste indicateur](http://www.waldata.fr/analysetechnique/bibliotheque/rsi.asp)
@@ -20,7 +21,7 @@ Dans les strategie envisgee, il y a les strategie "spatiale": On joue potentiele
   - [(MIT) Covariance and Correlation](https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading7b.pdf)
 
 
-  - some other stuff related
+  - some other stuff related:
   - [Unofficial Andrew Ng course notes](http://www.holehouse.org/mlclass/)
   - [Tom Mitchell Machine Learning Lectures](http://www.cs.cmu.edu/~ninamf/courses/601sp15/lectures.shtml)
   - [(MIT) What is Artificial Intelligence (AI)?](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-825-techniques-in-artificial-intelligence-sma-5504-fall-2002/lecture-notes/Lecture1Final.pdf)
@@ -29,7 +30,38 @@ Dans les strategie envisgee, il y a les strategie "spatiale": On joue potentiele
   - [(MIT) Value At Risk (VAR) Models](https://ocw.mit.edu/courses/mathematics/18-s096-topics-in-mathematics-with-applications-in-finance-fall-2013/lecture-notes/MIT18_S096F13_lecnote7.pdf)
   - [(MIT) Continuous Random Variables](https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/readings/MIT18_05S14_Reading5b.pdf)
 
+####  copule
+  - [copule (wiki)](https://fr.wikipedia.org/wiki/Copule_(math%C3%A9matiques))
+  - [MODÈLES FINANCIERS EN ASSURANCE ET ANALYSES DYNAMIQUES(26p)](http://www.ressources-actuarielles.net/EXT/ISFA/fp-isfa.nsf/0/0B9DF464E9543283C1256F130067B2F9/$FILE/Copules.pdf?OpenElement)
+  - [APPLICATION DES COPULES À LA FINANCE DES MARCHÉ (372)](https://archipel.uqam.ca/2765/1/D1897.pdf)
+  - [Copules et Aspects Multidimensionnels du Risque(233p)](http://www.thierry-roncalli.com/download/Lecture-Notes-Copula-Ensai.pdf)
+  - [COPULES : UNE NOUVELLE VISION DU CAPITAL ECONOMIQUE ET APPLICATION A UNE COMPAGNIE A QUATRE BRANCHES (23p)](http://www.ressources-actuarielles.net/EXT/IA/sitebfa.nsf/0/C5C03D556451FA56C125787B0051EB25/$FILE/FAIVRE.pdf?OpenElement)
+  - [Theorie des Valeurs Extremes ou Modelisation des Evenements Rares pour la Gestion des Risques](http://www.thierry-roncalli.com/download/Lecture-Notes-Evt-Dauphine.pdf)
 
+####  ondelette
+  - [Fast wavelet transform (wiki)](https://en.wikipedia.org/wiki/Fast_wavelet_transform)
+  - [MultiResolution analysis -MRA- (wiki)](https://en.wikipedia.org/wiki/Multiresolution_analysis)
+  - [Wavelet Toolbox](https://fr.mathworks.com/help/wavelet/index.html?s_tid=gn_loc_drop)
+      - [Fast Wavelet Transform (FWT) Algorithm](https://www.mathworks.com/help/wavelet/ug/fast-wavelet-transform-fwt-algorithm.html?requestedDomain=true&nocookie=true)
+  - [Les ondelettes                                     (20p)](http://www.cmap.polytechnique.fr/~bernard/these/chap2-fr.pdf)
+  - [introduciton aux ondelette                   (22p)](https://orbi.uliege.be/bitstream/2268/87186/1/Intro_ond1_v2.pdf)
+  - [Chapitre 4. Traitement et Analyse des Données](http://gwyddion.net/documentation/user-guide-fr/data-analysis.html)
+      - [trsanformer en ondelete](http://gwyddion.net/documentation/user-guide-fr/wavelet-transform.html)
+  - [Application de la th ́eorie desondelettes](http://www-ljk.imag.fr/membres/Valerie.Perrier/PUBLI/Cours1-VP.pdf)
+  - [cours/application ondelette                 (18p)](http://math.unice.fr/~krell/Projet/ondelette.pdf)
+  - [Ondelette pour le signal numerique  (158p)](http://www.le2i.cnrs.fr/IMG/publications/ondelettes.pdf)
+  - [Une analyse temps-fréquences des cycles financiers(12p)](https://halshs.archives-ouvertes.fr/halshs-00565229/document)
+  - [Une analyse temps-fréquences des cycles financiers OTHER ONE 11p](ftp://langues.univ-paris1.fr/pub/mse/CES2011/11003.pdf)
+  - [Transformée de Fourier fenêtrée / Transformée en ondelettes](http://cas.ensmp.fr/~chaplais/Wavetour_presentation/transformees/Transformees.html)
+  - [Etude de l’impact du contrôle des risques sur lesperformances financières [plein de truc sur les ondelette](123p)](http://www.ressources-actuarielles.net/EXT/ISFA/1226-02.nsf/9c8e3fd4d8874d60c1257052003eced6/661f1f091defa1e9c1257896005afb8f/$FILE/%20Louride%20Sekhri.002.pdf/Louride%20Sekhri.pdf)
+
+####  fractal
+  - [L'application des fractal a la finance                                                                                (7p)](http://users.math.yale.edu/~bbm3/web_pdfs/laRecherche.pdf)
+  - [De la finance stochastique a la finance fractale                                                          (287p)](http://compta-excellant.be/FINANCE%20STOCHASTIQUE%20ET%20FRACTALE.pdf)
+  - [ Les models fractals en finance                                                                                        (6p)](https://www.citeco.fr/IMG/pdf/modeles_fractals_en_finance.pdf)
+  - [La remise en cause du modèle classique de la financepar Benoît Mandelbrot et la nécessité d’intégrer les loisde puissance dans la compréhension des phénomèneséconomiques (57p)  ](https://tel.archives-ouvertes.fr/tel-00787464/document)
+  - [Benoît Mandelbrot et l’histoire de la finance                                                                  (~7p)](http://econoclaste.org.free.fr/econoclaste/?p=7559)
+  - [ Benoit Mandelbrot et la modélisation mathématique desrisques financiers                  (10p)](https://hal.archives-ouvertes.fr/file/index/docid/649050/filename/MandelbrotEtLaModelisationDesRisquesFinanciers.pdf)
 
 ## Thecno informatique:
   - [binance api IN USE](https://github.com/binance-exchange/binance-api-node/)
