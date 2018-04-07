@@ -56,17 +56,17 @@ function	do_something(err, res)
 	}
 	console.log("All colleciton created =)");
 	binance.websockets.trades(all_symbole_exchange, (trades) => {
-		db_info.dbo.collection(trades.s).insertOne(trades, do_nothing)
+		db_info.dbo.collection(trades.s + "_trade").insertOne(trades, do_nothing);
 	});
 
 	binance.websockets.depth(all_symbole_exchange, (depth) => {
-			db_info.dbo.collection(depth.s).insertOne(depth, do_nothing);
+			db_info.dbo.collection(depth.s + "_depth").insertOne(depth, do_nothing);
 	});
 
 	binance.websockets.miniTicker((markets) => {
 		for (i in markets)
 		{
-			db_info.dbo.collection(i).insertOne(markets[i], do_nothing);
+			db_info.dbo.collection(i + "_ticker").insertOne(markets[i], do_nothing);
 		}
 	});
 	console.log("all biding finised");
@@ -93,9 +93,13 @@ function	db_build(lst_name)
 		let i; // pour garder le i en dehors du for
 		for (i = 0; i < (nb_name - 1); i++)
 		{
-			dbo.createCollection(lst_name[i], do_nothing);
+			dbo.createCollection(lst_name[i] + "_ticker", do_nothing);
+			dbo.createCollection(lst_name[i] + "_trade", do_nothing);
+			dbo.createCollection(lst_name[i] + "_depth", do_nothing);
 		}
-		dbo.createCollection(lst_name[i], do_something);
+		dbo.createCollection(lst_name[i] + "_ticker", do_nothing);
+		dbo.createCollection(lst_name[i] + "_trade",  do_nothing);
+		dbo.createCollection(lst_name[i] + "_depth",  do_something);
 	});
 }
 
@@ -106,3 +110,5 @@ function	exec_process()
 
 
 exec_process();
+
+//	TODO: faire le truc des nom de collection par type d'objet (ticker, depth, trades)
