@@ -34,11 +34,6 @@ process.on('SIGINT', function() {
 	process.exit();
 });
 
-function	link_websocket_to_db()
-{
-	// c'est ici ;les baille wesh
-}
-
 function	do_nothing(err, res)
 {
 	if (err)
@@ -88,7 +83,7 @@ function	db_build(lst_name)
 		var dbo = db.db(db_info.name);
 		db_info.dbo = dbo;
 		db_info.db = db;
-	//	dbo.dropDatabase();		// on et pas aubliger de tout detruire a chaque fois
+	//	dbo.dropDatabase();		// on et pas aubliger de tout detruire a chaque fois =)
 
 		let i; // pour garder le i en dehors du for
 		for (i = 0; i < (nb_name - 1); i++)
@@ -105,7 +100,7 @@ function	db_build(lst_name)
 
 function	exec_process()
 {
-	get_name_promise.then(db_build); // on est pas trop aubliger de refare sa tout le temps ca prend quasiement 1 minutes
+	get_name_promise.then(db_build);
 }
 
 
